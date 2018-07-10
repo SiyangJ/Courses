@@ -1,0 +1,1167 @@
+
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
+<html lang="en">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<link media="all" href="style.css" type="text/css" rel="stylesheet" />
+<title>Compgen Tool Suite</title>
+</head>
+<body bgcolor="#cccccc" topmargin="10" leftmargin="10">
+<br />
+<table class="PageLayout" border="0" align="center" bgcolor="#ffffff" cellpadding="2" cellspacing="2">
+<tr>
+<td colspan="7" align="right" class="loginStatus">
+<small style="position: relative; left:-50px;">Logged in as: <em>siyangj</em></small>
+<small style="position: relative; left:-5px;"><a href="./?run=logout">Log out</a></small>
+</td>
+</tr>
+<tr>
+<td colspan="7" align="center" background="./Media/Comp411banner.png" height="120px">
+<strong style="color: #1166BB; text-shadow: 2px 2px 3px #000000; font-size:220%;">Comp 411 - Computer Organization</strong>
+<br />
+<strong style="color: #1166BB; text-shadow: 2px 2px 3px #000000; font-size:150%;">Fall 2017</strong>
+</td>
+</tr>
+<tr>
+<td class="menu"></td>
+<td width="14%" align="center" class="menu" valign="middle"><a href="./">Home</a></td>
+<td width="14%" align="center" class="menu" valign="middle"><a href="./?run=Research.index">Research</a></td>
+<td width="14%" align="center" class="menu" valign="middle"><a href="./?run=Courses.index">Courses</a></td>
+<td width="14%" align="center" class="menu" valign="middle"><a href="./?run=Publications.index">Publications</a></td>
+<td width="14%" align="center" class="menu" valign="middle"><a href="./?run=manage">Setup</a></td>
+<td class="menu"></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff" colspan="7" valign="top">
+<div style="padding:5px 25px;">
+<p><em>Userid: siyangj (Session times out in 158.57 mins)</em><br /><br /></p>
+<div align="center" id="header">
+<h2>The University of North Carolina at Chapel Hill</h2>
+<h3>Comp 411 -- Computer Organization - Fall 2017</h3>
+<h3>Midterm #2</h3>
+</div>
+<div id="info">
+<p><strong>Instructions:</strong> Make sure that you are logged in
+        and your userid is correct as shown in the upper left corner of the
+        exam. You should <em>consider logging out and logging back in</em> before
+        starting the exam in order to avoid having your session time out.
+        Select the single best answer for each question given below. You have
+        until 10:25am to complete the exam. You can, and should, submit partially
+        completed versions of your answers. Your answers will be saved, and you will
+        get an update of the time remaining. You may use any notes, printed materials,
+        or on-line references that you wish, but you cannot communicate with any
+        other person on-line, use a shared document, or seek aid from another
+        person via any means during the exam. <span style="color: red;">This time you will be required to enter
+        a secret code in order to submit your exam. The secret code will be supplied during
+        the exam, and it may change during the exam.</span></p>
+</div>
+<form action="" method="POST" enctype="multipart/form-data">
+<ol class="question">
+<br />
+<br />
+Consider the following multiplier architecture for computing the product of two unsigned 8-bit integers:
+<div><img src="./Media/Mult8x8.png" width="400px" /></div>
+<br />
+<li>Which of the following best explains how the performance of this design compares to the multipliers shown in class?
+    </li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P08" value="A" />
+&nbsp;
+</td>
+<td width="80%">It is slower because the adders grow in size with each subsequent stage</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P08" value="B" />
+&nbsp;
+</td>
+<td width="80%">In the limit this approach will always be slower because it cannot take advantage of Booth recoding</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P08" value="C" />
+&nbsp;
+</td>
+<td width="80%">It is the same speed as an array multiplier because it is essentially a redrawing of a carry-save adder</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P08" value="D" />
+&nbsp;
+</td>
+<td width="80%">In the limit, it is faster because it requires O(log(N)) adder stages</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P08" value="E" />
+&nbsp;
+</td>
+<td width="80%">It is faster because it begins adding its partial products sooner than an array multiplier</td>
+</tr>
+</table>
+<br />
+<li>The given multiplier architecture includes multiplies of
+x2, x4, and x16 at various stages. What do these scalings imply?
+    </li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P09" value="A" />
+&nbsp;
+</td>
+<td width="80%">Other small multiplers by constants are needed</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P09" value="B" />
+&nbsp;
+</td>
+<td width="80%">Left shifter logic is needed to implement these terms</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P09" value="C" />
+&nbsp;
+</td>
+<td width="80%">Right shifter logic is needed to implement the "other" unscaled term</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P09" value="D" />
+&nbsp;
+</td>
+<td width="80%">That the i<sup>th</sup> bit of the unscaled addend is combined with the<br />
+    i - log<sub>2</sub>(scale)<sup>th</sup> bit of the scaled addend via appropriate wiring.</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P09" value="E" />
+&nbsp;
+</td>
+<td width="80%">They are just notation and do not have any logic nor wiring implications</td>
+</tr>
+</table>
+<br />
+<li>Which of the following statements regarding Booth recoding is true?
+    </li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P10" value="A" />
+&nbsp;
+</td>
+<td width="80%">Three non-overlapping bits are used to compute each partial product</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P10" value="B" />
+&nbsp;
+</td>
+<td width="80%">It requires twice as many adders as a standard array multiplier</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P10" value="C" />
+&nbsp;
+</td>
+<td width="80%">It only supports unsigned multiplication</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P10" value="D" />
+&nbsp;
+</td>
+<td width="80%">It uses a shifter to implement multiplies by 2</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P10" value="E" />
+&nbsp;
+</td>
+<td width="80%">The unit block always either adds or subtracts its partial product</td>
+</tr>
+</table>
+<br />
+<br />
+<br />
+
+In our MiniARM implementation there are many muxtiplexors with one of their inputs set to "0" as shown below:
+<div><img src="./Media/Mux1is0.png" width="200px" /></div><p>They are commonly used to expand immediate operand fields to 32-bit values.</p>
+<br />
+<li>Which of the following 2-input gates can be used to replace these specific multiplexors?
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P07" value="A" />
+&nbsp;
+</td>
+<td width="80%">AND(S,A)</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P07" value="B" />
+&nbsp;
+</td>
+<td width="80%">B>A(S,A)</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P07" value="C" />
+&nbsp;
+</td>
+<td width="80%">XOR(S,A)</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P07" value="D" />
+&nbsp;
+</td>
+<td width="80%">B<=A(S,A)</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P07" value="E" />
+&nbsp;
+</td>
+<td width="80%">None of the above.</td>
+</tr>
+</table>
+<br />
+<br />
+<br />
+<div><img src="./Media/MiniARM.png" width="768px" /></div>
+The following questions refer to the one-clock-per-instruction ARM7
+implementation shown above that we developed in class.<br /><br />
+<br />
+<li>Which control signals below <em>must</em> differ between the<code> add r0,r0,r1 </code> and<code> add r0,r0,#1 </code> instructions?</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P22" value="A" />
+&nbsp;
+</td>
+<td width="80%">Itype</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P22" value="B" />
+&nbsp;
+</td>
+<td width="80%">Dtype</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P22" value="C" />
+&nbsp;
+</td>
+<td width="80%">Ttype</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P22" value="D" />
+&nbsp;
+</td>
+<td width="80%">Btype</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P22" value="E" />
+&nbsp;
+</td>
+<td width="80%">None of the above</td>
+</tr>
+</table>
+<br />
+<li>Which control signals below <em>must</em> differ between the<code> add r0,r0,r1 </code> and<code> and r0,r0,r1 </code> instructions?</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P23" value="A" />
+&nbsp;
+</td>
+<td width="80%">Sub</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P23" value="B" />
+&nbsp;
+</td>
+<td width="80%">Rsub</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P23" value="C" />
+&nbsp;
+</td>
+<td width="80%">b<sub>00</sub>,b<sub>01</sub>,b<sub>10</sub>,b<sub>11</sub></td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P23" value="D" />
+&nbsp;
+</td>
+<td width="80%">Math</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P23" value="E" />
+&nbsp;
+</td>
+<td width="80%">None of the above</td>
+</tr>
+</table>
+<br />
+<br />
+<br />
+<p style="text-align:center;">MiniARM repeated:</p><img src="./Media/MiniARM.png" width="768px" />
+<br />
+<li>The ARM7 ISA only allows for <it>only</it> constant shifts in X-type data transfer instructions like<code> ldr r0,[r1,r2,lsl #2]</code>
+and<code> str  r0,[r1, r2,lsl #2]</code> (i.e. the shift amount of the offset register, rm, cannot be specified as the contents of a register),
+whereas vaiable shifts are allowed for data processing instructions like<code> add r0,r1,r2,lsl r3 </code> and<code> mov r0,r1,lsl r2 </code>.
+Which of the following statements<it>best</it> explains why this is the case?</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P24" value="A" />
+&nbsp;
+</td>
+<td width="80%">Data transfer instructions do not make use of the ALU where the shifting occurs.</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P24" value="B" />
+&nbsp;
+</td>
+<td width="80%">There are no available bits to encode an additional register in the X-type instruction.</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P24" value="C" />
+&nbsp;
+</td>
+<td width="80%">Data transfer instructions are already very complicated. Adding a variable shift would violate RISC principles.</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P24" value="D" />
+&nbsp;
+</td>
+<td width="80%">A fifth register port would be required to support <code>str</code> instructions using a variable shift.</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P24" value="E" />
+&nbsp;
+</td>
+<td width="80%">All of the above</td>
+</tr>
+</table>
+<br />
+<li>Which of the following control signal settings is
+inconsistent with the following instruction:
+<div align="center"><pre><code>mov  r0,#42</code></pre></div></li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P25" value="A" />
+&nbsp;
+</td>
+<td width="80%">Itype = 1</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P25" value="B" />
+&nbsp;
+</td>
+<td width="80%">Ttype = 0</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P25" value="C" />
+&nbsp;
+</td>
+<td width="80%">Rot = 1</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P25" value="D" />
+&nbsp;
+</td>
+<td width="80%">Cond = 1</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P25" value="E" />
+&nbsp;
+</td>
+<td width="80%">Math = 1</td>
+</tr>
+</table>
+<br />
+<br />
+<br />
+Consider the Finite State Machine shown below:
+<div><img src="./Media/FSM2017.png" width="500px" /></div>
+<br />
+<li>What is the minimum clock period for which this circuit
+can be expected to operate as intended?<br /></li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P17" value="A" />
+&nbsp;
+</td>
+<td width="80%">5 nS</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P17" value="B" />
+&nbsp;
+</td>
+<td width="80%">6 nS</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P17" value="C" />
+&nbsp;
+</td>
+<td width="80%">8 nS</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P17" value="D" />
+&nbsp;
+</td>
+<td width="80%">9 nS</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P17" value="E" />
+&nbsp;
+</td>
+<td width="80%">10 nS</td>
+</tr>
+</table>
+<br />
+<li>What is the smallest t<sub>cd,reg</sub> for which the given circuit will perform as expected?</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P18" value="A" />
+&nbsp;
+</td>
+<td width="80%">-1 nS</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P18" value="B" />
+&nbsp;
+</td>
+<td width="80%">0 nS</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P18" value="C" />
+&nbsp;
+</td>
+<td width="80%">1 nS</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P18" value="D" />
+&nbsp;
+</td>
+<td width="80%">2 nS</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P18" value="E" />
+&nbsp;
+</td>
+<td width="80%">There is no contamination delay value for which the circuit will operate</td>
+</tr>
+</table>
+<br />
+<li>What is the greatest number of states that the given FSM can have?
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P19" value="A" />
+&nbsp;
+</td>
+<td width="80%">1</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P19" value="B" />
+&nbsp;
+</td>
+<td width="80%">2</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P19" value="C" />
+&nbsp;
+</td>
+<td width="80%">3</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P19" value="D" />
+&nbsp;
+</td>
+<td width="80%">4</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P19" value="E" />
+&nbsp;
+</td>
+<td width="80%">There is no limit to the number of states</td>
+</tr>
+</table>
+<br />
+<br />
+<br />
+<p style="text-align:center;">FSM diagram repeated:</p><div><img src="./Media/FSM2017.png" width="500px" /></div>
+<br />
+<li>If the current state is S1 = 0 and S0 = 0, what will be the next state when X = 1?
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P20" value="A" />
+&nbsp;
+</td>
+<td width="80%">S1 = 0 and S0 = 0</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P20" value="B" />
+&nbsp;
+</td>
+<td width="80%">S1 = 0 and S0 = 1</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P20" value="C" />
+&nbsp;
+</td>
+<td width="80%">S1 = 1 and S0 = 0</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P20" value="D" />
+&nbsp;
+</td>
+<td width="80%">S1 = 1 and S0 = 1</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P20" value="E" />
+&nbsp;
+</td>
+<td width="80%">It is not a proper state machine</td>
+</tr>
+</table>
+<br />
+<br />
+<br />
+<p style="text-align:center;">FSM diagram repeated:</p><div><img src="./Media/FSM2017.png" width="500px" /></div>
+<br />
+<li>If the state of the given FSM is initially S1 = 0 and S0 = 1,
+which of the following patterns of S0 results when the sequence [1,1,0,1,1,0] is
+provided from left-to-right on sucessive clocks to the X input?
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P21" value="A" />
+&nbsp;
+</td>
+<td width="80%">[1,1,0,1,1,0]</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P21" value="B" />
+&nbsp;
+</td>
+<td width="80%">[0,1,1,0,1,1]</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P21" value="C" />
+&nbsp;
+</td>
+<td width="80%">[0,1,0,0,1,1]</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P21" value="D" />
+&nbsp;
+</td>
+<td width="80%">[0,1,1,1,1,1]</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P21" value="E" />
+&nbsp;
+</td>
+<td width="80%">[0,1,1,1,1,0]</td>
+</tr>
+</table>
+<br />
+<br />
+<br />
+In class we discussed implementing the ALU's Boolean functions with the following circuit repeated for each bit.
+<div><img src="./Media/BoolMux.png" width="300px" /></div>
+The ARM7 Instructions Set Architecture (ISA) includes the following four Boolean functions:<br />"AND", "ORR", "EOR", and "BIC".<br />
+<br />
+<li>How are the mux inputs set to implement the "BIC" instruction?
+    </li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P11" value="A" />
+&nbsp;
+</td>
+<td width="80%">X = 1, Y = 1, Z = 1, W = 0</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P11" value="B" />
+&nbsp;
+</td>
+<td width="80%">X = 1, Y = 0, Z = 0, W = 0</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P11" value="C" />
+&nbsp;
+</td>
+<td width="80%">X = 0, Y = 0, Z = 1, W = 0</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P11" value="D" />
+&nbsp;
+</td>
+<td width="80%">X = A<sub>i</sub>, Y = A<sub>i</sub>, Z = B<sub>i</sub>, W = B<sub>i</sub></td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P11" value="E" />
+&nbsp;
+</td>
+<td width="80%">X = AND(A<sub>i</sub>, NOT(B<sub>i</sub>)), Y = 0, Z = 0, W = 0</td>
+</tr>
+</table>
+<br />
+<li>The MIPS ISA includes a NOR instruction that is not present in ARM. It computes the bit-wise nor of its two operands and stores the result in destination register. How might the Bool mux inputs be set to implement a "NOR" instruction for ARM?
+    </li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P12" value="A" />
+&nbsp;
+</td>
+<td width="80%">X = 1, Y = 1, Z = 1, W = 0</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P12" value="B" />
+&nbsp;
+</td>
+<td width="80%">X = 1, Y = 0, Z = 0, W = 0</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P12" value="C" />
+&nbsp;
+</td>
+<td width="80%">X = 0, Y = 0, Z = 1, W = 0</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P12" value="D" />
+&nbsp;
+</td>
+<td width="80%">X = A<sub>i</sub>, Y = A<sub>i</sub>, Z = B<sub>i</sub>, W = B<sub>i</sub></td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P12" value="E" />
+&nbsp;
+</td>
+<td width="80%">X = NOT(OR(A<sub>i</sub>, B<sub>i</sub>)), Y = 0, Z = 0, W = 0</td>
+</tr>
+</table>
+<br />
+<li>Which of the following 2-input gates is not universal?
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P13" value="A" />
+&nbsp;
+</td>
+<td width="80%">NAND(A,B)</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P13" value="B" />
+&nbsp;
+</td>
+<td width="80%">NOR(A,B)</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P13" value="C" />
+&nbsp;
+</td>
+<td width="80%">A<=B(A,B)</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P13" value="D" />
+&nbsp;
+</td>
+<td width="80%">AND(A,B)</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P13" value="E" />
+&nbsp;
+</td>
+<td width="80%">A>B(A,B)</td>
+</tr>
+</table>
+<br />
+<li>A finite state machine with 1 input is implemented using a 16-word by 4-bit ROM. What is the most states that this FSM can have?
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P14" value="A" />
+&nbsp;
+</td>
+<td width="80%">3</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P14" value="B" />
+&nbsp;
+</td>
+<td width="80%">4</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P14" value="C" />
+&nbsp;
+</td>
+<td width="80%">8</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P14" value="D" />
+&nbsp;
+</td>
+<td width="80%">16</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P14" value="E" />
+&nbsp;
+</td>
+<td width="80%">The maximum number of states can't be determined from the information given</td>
+</tr>
+</table>
+<br />
+<li>A finite state machine with 6 states is implemented using a 16-word by 4-bit ROM. What is the most outputs that this FSM can have which are not also state bits?
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P15" value="A" />
+&nbsp;
+</td>
+<td width="80%">0</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P15" value="B" />
+&nbsp;
+</td>
+<td width="80%">1</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P15" value="C" />
+&nbsp;
+</td>
+<td width="80%">2</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P15" value="D" />
+&nbsp;
+</td>
+<td width="80%">3</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P15" value="E" />
+&nbsp;
+</td>
+<td width="80%">The maximum number of outputs can't be determined from the information given</td>
+</tr>
+</table>
+<br />
+<li>What is encoded on the tape of a Universal Turing Machine?
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P16" value="A" />
+&nbsp;
+</td>
+<td width="80%">A program to emulate a more powerful machine than a Turing Machine</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P16" value="B" />
+&nbsp;
+</td>
+<td width="80%">Just the state-transistion table for a Turing Machine it is emulating</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P16" value="C" />
+&nbsp;
+</td>
+<td width="80%">The input tape for another Turing Machine it is emulating</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P16" value="D" />
+&nbsp;
+</td>
+<td width="80%">Both the state-transistion table, and the input tape for another Turing Machine it is emulating</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P16" value="E" />
+&nbsp;
+</td>
+<td width="80%">A program and tape that, when executed, always halts.</td>
+</tr>
+</table>
+<br />
+<li>Which of the following operations exercises the
+worse-case path of a 32-bit adder/subtractor built using a simple ripple-carry
+architecture?
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P06" value="A" />
+&nbsp;
+</td>
+<td width="80%"><code>0x00000001 + 0xffffffff</code></td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P06" value="B" />
+&nbsp;
+</td>
+<td width="80%"><code>0x80000000 + 0x80000000</code></td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P06" value="C" />
+&nbsp;
+</td>
+<td width="80%"><code>0xffffffff - 0xfffffffe</code></td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P06" value="D" />
+&nbsp;
+</td>
+<td width="80%"><code>0x00000000 - 0x00000001</code></td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P06" value="E" />
+&nbsp;
+</td>
+<td width="80%"><code>0x00000000 - 0x00000000</code></td>
+</tr>
+</table>
+<br />
+<br />
+<br />
+
+    <style>
+        .T01 {
+            border:1px solid black;
+            border-collapse:collapse;
+            padding:3px;
+        }
+        .T01 th {
+        	border:1px solid black;
+        	padding:3px;
+        	background:#E0FFFF;
+        }
+        .T01 td {
+        	border:1px solid black;
+        	padding:3px;
+        }
+        .T01 td:nth-child(1),
+        .T01 td:nth-child(2),
+        .T01 td:nth-child(3) {
+        	border:1px solid black;
+        	padding:3px;
+        	background:#E0FFFF;
+        }
+        img {
+            display:block;
+            margin: 20px auto 20px auto;
+        }
+    </style><table align="center" class="T01">
+        <tr><th align="center" colspan="3">Inputs</th><th align="center" colspan="5">Outputs</th></tr>
+        <tr><th>X</th><th>Y</th><th>Z</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+    </table><p>The following questions refer to the truth table given above, which specifies five Boolean
+    functions, A, B, C, D, and E. (Note: This table is repeated before later questions to minimize scrolling.)</p>
+<br />
+<li>Which function is realized by the following logic with
+X, Y, and Z each connected to <br />one of I, J, and K? (Hint: Consider the two cases when all inputs are 0, and then when all inputs are 1s. Next try to figure out which input is connected to K, in particular when K=0)<div><img src="./Media/NandNand.png" width="300px" /></div></li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right">
+<input type="radio" name="P01" value="A" />
+A
+</td>
+<td width="20%" align="right">
+<input type="radio" name="P01" value="B" />
+B
+</td>
+<td width="20%" align="right">
+<input type="radio" name="P01" value="C" />
+C
+</td>
+<td width="20%" align="right">
+<input type="radio" checked="checked" name="P01" value="D" />
+D
+</td>
+<td width="20%" align="right">
+<input type="radio" name="P01" value="E" />
+E
+</td>
+</tr>
+</table>
+<br />
+<br />
+<br />
+
+    <p style="text-align:center;">The same truth table repeated:</p><table align="center" class="T01">
+        <tr><th align="center" colspan="3">Inputs</th><th align="center" colspan="5">Outputs</th></tr>
+        <tr><th>X</th><th>Y</th><th>Z</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+    </table>
+<br />
+<li>Which function can be implemented using only a single 2-input multiplexor? (Hint: Once more, consider the two cases when all inputs are 0, and then when all inputs are 1s. Then try to figure out which input is connected to the Mux's select input.)
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right">
+<input type="radio" name="P02" value="A" />
+A
+</td>
+<td width="20%" align="right">
+<input type="radio" name="P02" value="B" />
+B
+</td>
+<td width="20%" align="right">
+<input type="radio" checked="checked" name="P02" value="C" />
+C
+</td>
+<td width="20%" align="right">
+<input type="radio" name="P02" value="D" />
+D
+</td>
+<td width="20%" align="right">
+<input type="radio" name="P02" value="E" />
+E
+</td>
+</tr>
+</table>
+<br />
+<li>Which function can be implemented as a single-level CMOS
+gate (i.e. with a single set of pull-down and pull-up transistors driving the output)?
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right">
+<input type="radio" name="P03" value="A" />
+A
+</td>
+<td width="20%" align="right">
+<input type="radio" name="P03" value="B" />
+B
+</td>
+<td width="20%" align="right">
+<input type="radio" name="P03" value="C" />
+C
+</td>
+<td width="20%" align="right">
+<input type="radio" name="P03" value="D" />
+D
+</td>
+<td width="20%" align="right">
+<input type="radio" checked="checked" name="P03" value="E" />
+E
+</td>
+</tr>
+</table>
+<br />
+<br />
+<br />
+
+    <p style="text-align:center;">The same truth table repeated:</p><table align="center" class="T01">
+        <tr><th align="center" colspan="3">Inputs</th><th align="center" colspan="5">Outputs</th></tr>
+        <tr><th>X</th><th>Y</th><th>Z</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+    </table>
+<br />
+<li>An implementation of function E can be used to compute
+function B with the following circuit, if the unknown input, U, is properly connected.
+<div><img src="./Media/EXORB.png" width="400px" /></div><br />Which of the following signals should be connected to U?</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P04" value="A" />
+&nbsp;
+</td>
+<td width="80%">X</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P04" value="B" />
+&nbsp;
+</td>
+<td width="80%">Y</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P04" value="C" />
+&nbsp;
+</td>
+<td width="80%">Z</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P04" value="D" />
+&nbsp;
+</td>
+<td width="80%">0</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P04" value="E" />
+&nbsp;
+</td>
+<td width="80%">1</td>
+</tr>
+</table>
+<br />
+<li>How large of a ROM would be sufficient to represent all
+five functions in the given table?
+</li>
+<table width="600px" style="margin: 6px 0px 26px 0px;">
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P05" value="A" />
+&nbsp;
+</td>
+<td width="80%">5 words by 8 bits</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" checked="checked" name="P05" value="B" />
+&nbsp;
+</td>
+<td width="80%">8 words by 5 bits</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P05" value="C" />
+&nbsp;
+</td>
+<td width="80%">5 words by 40 bits</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P05" value="D" />
+&nbsp;
+</td>
+<td width="80%">8 words by 40 bits</td>
+</tr>
+<tr>
+<td width="20%" align="right" valign="top">
+<input type="radio" name="P05" value="E" />
+&nbsp;
+</td>
+<td width="80%">None of the above</td>
+</tr>
+</table>
+<br />
+</ol>
+<div align="center">
+<input type="hidden" name="target" value="Comp411.Submit" />
+<input type="hidden" name="pset" value="12" />
+<input type="hidden" name="count" value="25" />
+<input type="text" name="secret" value="Enter Secret Code Here" size="25" />
+<br />
+<input type="submit" name="submit" value="Submit" />
+</div>
+</form>
+</div>
+
+
+</td>
+</tr>
+</table>
+<br />
+<br />
+<div align="center">Site built using pyWeb version 1.10</div>
+<div align="center">&copy; 2010 Leonard McMillan, Alex Jackson and UNC Computational Genetics</div>
+<br />
+</body>
+</html>

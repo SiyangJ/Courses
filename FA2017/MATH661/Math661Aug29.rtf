@@ -1,0 +1,104 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 subtraction error big\
+\
+how bad loss of prison can be\
+\
+Ex. x y positive, normalized floating point numbers\
+\
+x = (1.e)*2^n, y = (1.f)*2^m\
+\
+assume x>y\
+\
+2^-q <= 1-y/x <= 2^-p\
+\
+then at most q and at least p sig digits are lost when computing x-y\
+\
+i.e. p \'97 q sig digits are lost\
+\
+proof (lower bound)\
+\
+x = r*2^n (1/2 <= r <1)\
+\
+y = s*2^m (1/2 <= s <1)\
+   = s*2^(m-n)*2^n\
+\
+x-y = (r-s*2^(m-n))*2^n\
+\
+mantissa: r-s*2^(m-n) = r(1-y/x) <= r*2^-p < 2^-p, by assumption\
+\
+so the new mantissa loses at least p sig digits, \
+\
+similarly, loses at most q sig. digits.\
+\
+Ex.\
+\
+x0 = 1, x1 = 1/3, xn+1 = 13/3*xn - 4/3*xn-1\
+\
+xn = (1/3)^n\
+\
+bad way to compute (1/3)^n, since error exponentially explodes due to 13/3*xn\
+\
+ill-conditioned computation\
+\
+ill-conditioned: small changes of data lead to large changes in the result\
+\
+condition number: qualifying conditioning\
+\
+Ex. f(x)->f(x+h)\
+\
+def: \
+h : perturbation\
+|f(x+h)-f(x)| = |f\'92(q)h| === |f\'92(x)h|\
+|f(x+h)-f(x)|/|f(x)| === |xf\'92(x)|/|f(x)|*|h/x|\
+\
+condition number : |x*f\'92(x)|/|f(x)|\
+relative error : h/|x|\
+\
+\
+\
+Non-linear equation root finding\
+\
+Find x satisfying f(x)=0\
+\
+Simplest method : bisection\
+\
+requires f continuous on [a,b], using intermediate value theorem\
+\
+[an,bn], (an), (bn) monotonic and bounded, thus convergent\
+\
+(bn-an) converges to 0\
+\
+the limit of an and bn are the same, which is r\
+\
+f(an)f(bn)<=0\
+\
+lim f(an)f(bn) = f(r)^2 <=0\
+\
+so r if the root\
+\
+choose the mid-point of an and bn\
+\
+error is 1/2|bn-an| = 2^-(n+1)*|b0-a0|\
+\
+\'93linear convergence\'94\
+\
+assume 0 < an < bn\
+\
+relative error : |r-cn|/|r| \
+\
+how to bound?\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 |r-cn|/|r| < |r-cn|/a0 <=  (2^-(n+1)*|b0-a0|)/a0, required to be less than delta\
+\
+thus n >= -log2(a0/(b0-a0)*delta)-1\
+\
+\
+\
+}

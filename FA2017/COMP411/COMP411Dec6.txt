@@ -1,0 +1,20 @@
+2
+B
+With Lori's approach, the total number of constants that can be generated is not changed, for both I and D type.
+Now that we can generate negative numbers, at the same time, we can generate less positive numbers.
+For I-type, we can generate numbers from -128 to 127.
+If we account for rotation, we can generate negative numbers like 0x80FFFFFF.
+C
+Now we can subtract a register from 0xFFFFFFFF (0xFF extended with "1"s), which essentially performs a bitwise negation on the value in that register.
+
+3
+B
+No.
+We can make the pipeline 4-stage, fetch-decode-execute-memory operation. Now all instructions, including data-transfer instructions, take 2-cycles. However, in the steady state, the CPI is still 1. And since we separate ALU execution and memory access, we don't have to stall the pipeline to waste a clock.
+C
+Now that we separate ALU operations and memory access, load-use data dependencies may happen, for example, the register being loaded for instruction n, is used as operand for instruction n+1.
+Need 3 more bypass paths. For ALU input A, B, and Shift
+Suppose there's some load instruction before the current one, e.g. ldr r1,x
+For A: add r0,r1,r2
+For B: add r0,r2,r1
+For shift: add r0,r0,r2,lsl r1

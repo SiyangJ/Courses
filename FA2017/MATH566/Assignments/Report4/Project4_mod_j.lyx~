@@ -1,0 +1,2092 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing double
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 2cm
+\rightmargin 3cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Project 4: Zombies Outbreak
+\end_layout
+
+\begin_layout Author
+Chenxi Huang, Siyang Jing and Yingqiao Zhou
+\end_layout
+
+\begin_layout Date
+November 27, 2017
+\end_layout
+
+\begin_layout Section*
+Introduction
+\end_layout
+
+\begin_layout Section*
+Statement of the Problem
+\end_layout
+
+\begin_layout Standard
+This project introduces four models relating to zombies outbreak as follows.
+\end_layout
+
+\begin_layout Subsection
+Basic model
+\end_layout
+
+\begin_layout Standard
+For the basic model, we only consider susceptible, zombie and removed.
+ Those three classes are denoted by 
+\begin_inset Formula $S$
+\end_inset
+
+, 
+\begin_inset Formula $Z$
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+ respectively.
+ Susceptibles can become deceased through 
+\begin_inset Quotes eld
+\end_inset
+
+natural
+\begin_inset Quotes erd
+\end_inset
+
+ causes or zombies through transmission via an encounter with a zombie;
+ the removed class consists of susceptibles or zombies who have died through
+ natural causes or attack; new zombies can come from either the removed
+ group due to the resurrection or the susceptible group who have bitten
+ by a zombie.
+ The model is given by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{c}
+S'=\Pi-\beta SZ-\delta S\\
+Z'=\beta SZ+\zeta R-\alpha SZ\\
+R'=\delta S+\alpha SZ-\zeta R
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We want to know the initial conditions that human kind can survive.
+\end_layout
+
+\begin_layout Subsection
+Latent infection
+\end_layout
+
+\begin_layout Standard
+Based on the basic model, a new group called infected class (I) is included.
+ Before becoming a zombie, infected susceptibles move to an infected class
+ first and remain there for some period of time, and infected individuals
+ can still die through natural causes.
+ Thus, the model becomes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{c}
+S'=\Pi-\beta SZ-\delta S\\
+I'=\beta SZ-\rho I-\delta I\\
+Z'=\rho I+\zeta R-\alpha SZ\\
+R'=\delta S+\delta I+\alpha SZ-\zeta R
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We want to know the effect of latent infection and if human kind can survive
+ in this model.
+\end_layout
+
+\begin_layout Subsection
+Quarantine
+\end_layout
+
+\begin_layout Standard
+The effects of quarantine (Q) of zombies has been modeled on the basis of
+ the model in Part II.
+ The quarantined area only contains members of the infected or zombie population
+s.
+ Moreover, any members in this group tried to escape would be killed before
+ finding their 
+\begin_inset Quotes eld
+\end_inset
+
+freedom
+\begin_inset Quotes erd
+\end_inset
+
+, and these killed individuals enter the removed class.
+ Now, the model is 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{c}
+S'=\Pi-\beta SZ-\delta S\\
+I'=\beta SZ-\rho I-\delta I-\kappa I\\
+Z'=\rho I+\zeta R-\alpha SZ-\sigma Z\\
+R'=\delta S+\delta I+\alpha SZ-\zeta R\\
+Q'=\kappa I+\sigma Z-\gamma Q
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We want to know the effect of quarantine and if human kind can survive.
+\end_layout
+
+\begin_layout Subsection
+Treatment
+\end_layout
+
+\begin_layout Standard
+In this model, the quarantine is no longer needed as we have treatment.
+ The cure will allow zombies to become susceptibles again no matter how
+ they became zombies.
+ The new model is shown below as 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{c}
+S'=\Pi-\beta SZ-\delta S+cZ\\
+I'=\beta SZ-\rho I-\delta I\\
+Z'=\rho I+\zeta R-\alpha SZ-cZ\\
+R'=\delta S+\delta I+\alpha SZ-\zeta R
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We want to know at which rate that wee need to treat zombies to survive.
+\end_layout
+
+\begin_layout Standard
+For all the models above, 
+\begin_inset Formula $\Pi,\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\delta$
+\end_inset
+
+ respectively represent the rate of birth, transmission from 
+\begin_inset Formula $Q$
+\end_inset
+
+ and non-zombie related death.
+ 
+\begin_inset Formula $\alpha,\zeta$
+\end_inset
+
+and 
+\begin_inset Formula $\rho$
+\end_inset
+
+represent the rate of zombies defeated, the rate of resurrection from 
+\begin_inset Formula $R$
+\end_inset
+
+ to 
+\begin_inset Formula $Z$
+\end_inset
+
+ and the rate of transmission from 
+\begin_inset Formula $I$
+\end_inset
+
+ to 
+\begin_inset Formula $Z$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\kappa,\sigma$
+\end_inset
+
+and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+represent the rates of entering at 
+\begin_inset Formula $Q$
+\end_inset
+
+ from 
+\begin_inset Formula $I$
+\end_inset
+
+ , from 
+\begin_inset Formula $Z$
+\end_inset
+
+ and the rate of I being killed due to the attempt to escape.
+ And 
+\begin_inset Formula $c$
+\end_inset
+
+ represents the rate of zombies being cured.
+\end_layout
+
+\begin_layout Standard
+In this project, we assume that 
+\begin_inset Formula $\alpha=\rho=0.005,$
+\end_inset
+
+ 
+\begin_inset Formula $\beta=0.0095,$
+\end_inset
+
+ 
+\begin_inset Formula $\zeta=0.0001,$
+\end_inset
+
+ 
+\begin_inset Formula $\Pi=\delta=0.0001$
+\end_inset
+
+ and 
+\begin_inset Formula $S(0)=S_{0}=3\times10^{8}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+\noindent
+Numerical Method
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To give numerical approximations of the four models, we used the Heun method
+ given by the following formula:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\begin_inset Formula 
+\begin{equation}
+u_{n+1}=u_{n}+\frac{h}{2}[f_{n}+f(t_{n+1},u_{n}+hf_{n})]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+Heun method is an explicit method, which demands less computational cost
+ than implicit method.
+ An explicit method could be evaluated directly in terms of known quantities
+ at the previous time step, whereas an implicit method generally requires
+ a matrix or iterative solution to compute the new quantities since unknowns
+ are at the both sides of an equation.
+ Besides, the Heun method is a method of order 2, and thereby gives more
+ accurate approximations than first-order methods.
+ The estimate of truncation error 
+\begin_inset Formula $\tau_{n}$
+\end_inset
+
+ is derived as follows.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\tau_{n}=\frac{u_{n+1}-u_{n}}{h}-\frac{1}{2}(f_{n}+f(t_{n+1},u_{n}+hu_{n}^{'}))=u_{n}^{'}+\frac{h}{2!}u_{n}^{''}+\mathcal{O}(h^{2})-\frac{1}{2}\left[u_{n}^{'}+u_{n}^{'}+hu_{n}^{'}f^{'}(t_{n},u_{n})+\mathcal{O}(h^{2})\right]$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $=u_{n}^{'}+\frac{h}{2}u_{n}^{''}+\mathcal{O}(h^{2})-\frac{1}{2}(2\cdot u_{n}^{'}+hu_{n}^{''}+\mathcal{O}(h^{2}))=\mathcal{O}(h^{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+\paragraph_spacing double
+\noindent
+Analysis
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+\size large
+1.
+ Basic Model 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+\noindent
+From equation 
+\begin_inset Formula $S^{'}=\Pi-\beta SZ-\delta S$
+\end_inset
+
+, both 
+\begin_inset Formula $Z$
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+ have negative effect on the growth rate of the susceptible class.
+ Consider an optimal case that minimizes the negative effect with 
+\begin_inset Formula $Z_{0}=0$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}=0$
+\end_inset
+
+ as they are forced to be nonnegative.
+ The solution to the Basic Model with optimal initial condition is given
+ by Figure 1, which implies that the susceptible class will eventually die
+ out even for the extreme case in which initially there is no members in
+ Zombie class and Removed class.
+ In that case, we are capable of deducing the conclusion that for any values
+ of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ will eventually decay to zero.
+ Thus, under no initial conditions could human kind survive.
+\end_layout
+
+\begin_layout Standard
+Nevertheless, we still want to investigate the behavior of solutions 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ with different values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+First, we fix the value of 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ at 
+\begin_inset Formula $3\times10^{8}$
+\end_inset
+
+.
+ In Figure 2 below, solutions 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ are plotted with different colors corresponding to the 6 different values
+ of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ ranging from 0 to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+.
+ We can see that the speed of the decay of population varies, but all decay
+ to sufficiently near zero eventually, again confirming our reasoning that
+ human will extinct regardless of initial condition.
+\end_layout
+
+\begin_layout Standard
+\noindent
+In addition, it is also noticeable that when 
+\begin_inset Formula $Z_{0}=0,$
+\end_inset
+
+ the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ exhibits significant dependence on 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+.
+ Figure 3 below shows the trend of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ with fixed 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ at 0, in which different colors correspond to different 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ values.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing single
+\align center
+\begin_inset Graphics
+	filename /Users/ashley/Desktop/Report4Fig1.0.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing single
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Population Change with Optimal Condition
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Optional:
+\end_layout
+
+\begin_layout Standard
+Next, we investigate the difference of the behavior of solutions with different
+ values 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, for non-zero 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In Figure 4, for each value of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, we compute a base solution 
+\begin_inset Formula $X_{b}$
+\end_inset
+
+, with 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ set to zero, respectively.
+ Then, for each value of 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, we get a new solution 
+\begin_inset Formula $X$
+\end_inset
+
+, and we plot the difference 
+\begin_inset Formula $X-X_{b}$
+\end_inset
+
+ with the color corresponding to the value of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+.
+ We can see that the order of magnitude is 
+\begin_inset Formula $1e2$
+\end_inset
+
+, and is indeed insignificant compared to 
+\begin_inset Formula $3e8$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+\noindent
+\align left
+
+\shape italic
+\size large
+2.
+ Latent infection Model
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To check the effect of latent infection, initialize 
+\begin_inset Formula $Z_{0},$
+\end_inset
+
+ 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ with different values respectively.
+ Assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+ with equally-spaced interval; 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ be 11 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $2\cdot S_{0}$
+\end_inset
+
+ with equally-spaced interval; 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ be 11 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $2\cdot S_{0}$
+\end_inset
+
+ with equally-spaced interval.
+ 
+\end_layout
+
+\begin_layout Standard
+//TODO Description of numerical method
+\end_layout
+
+\begin_layout Standard
+Figure 5 below gives solutions with different initial conditions, with different
+ colors corresponding to different 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+ Notice that the lines of the same color basically overlap with each other,
+ indicating that changes in 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ does not cause significant change.
+ Thus, the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is dominated by 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can also see that for certain values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ does not seem to decay to zero, and seem to converge to a non-zero number.
+ Such behavior is not observed in Part I.
+ Also, we can see that the final stable human population 
+\begin_inset Formula $S(t_{n})$
+\end_inset
+
+ seems to be monotonic in 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, which means, the more zombies there are initially, the less human population
+ would be, which is certainly reasonable in this situation.
+ 
+\end_layout
+
+\begin_layout Standard
+%%Optional: (Hard to express the process)
+\end_layout
+
+\begin_layout Standard
+Therefore, it is reasonable to assume that there exists a threshold value
+ 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, such that for 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ greater than 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, human could not survive, and for 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ smaller than 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, human could survive.
+\end_layout
+
+\begin_layout Standard
+//TODO
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To calculate such 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, we first define extinction as 
+\end_layout
+
+\begin_layout Standard
+We assume 
+\begin_inset Formula $R_{0}=S_{0}=3\times e^{8}$
+\end_inset
+
+ and use the bisection method to find 
+\end_layout
+
+\begin_layout Standard
+We find such value to be 
+\begin_inset Formula $1.5946\times10^{8}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+//end TODO
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To further evaluate how latent infection affect the human population 
+\begin_inset Formula $S(t)$
+\end_inset
+
+, fix 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{o}$
+\end_inset
+
+ as they are not significantly influencing the behavior of 
+\begin_inset Formula $S(t),$
+\end_inset
+
+ and assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with different values.
+ The behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is shown in Figure 6, with solid line representing Part II and dashed line
+ representing Part I.
+ From the figure we can see that latent infection reduced the rate of decay
+ in 
+\begin_inset Formula $S(t)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+%% Optional
+\end_layout
+
+\begin_layout Standard
+//Need More
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+Although 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ does not cause significant change on 
+\begin_inset Formula $S(t)$
+\end_inset
+
+, there was indeed some minor differences between the solutions with different
+ values of 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+Again, for each value of 
+\begin_inset Formula $Z_{0},$
+\end_inset
+
+ we compute a base solution 
+\begin_inset Formula $X_{b}$
+\end_inset
+
+ with 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ set to zero, and a new solution 
+\begin_inset Formula $X$
+\end_inset
+
+ for each value of 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, respectively, in a way similar to Part I .
+ The difference 
+\begin_inset Formula $X-X_{b}$
+\end_inset
+
+ is plotted in Figure 7.
+ The difference has the order of magnitude of 
+\begin_inset Formula $10^{1}$
+\end_inset
+
+, and is infinitesimal with respect to 
+\begin_inset Formula $10^{8}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+//end Need More
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Fig2.1.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Population Change with Different Values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Fig3.0.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Population Change for Part I and Part II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Part2Fig3.0.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Difference in Solution Caused by Change in 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+\noindent
+\align left
+
+\shape italic
+\size large
+3.
+ Quarantine Model
+\end_layout
+
+\begin_layout Standard
+To begin with, we investigate the dependence of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ on the parameters 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+First, we check dependence on the initial conditions.
+ We initialize 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+ with different values, respectively, and fix the parameters 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ Assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+, with equally-spaced interval; 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+, respectively, be 11 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $2\cdot S_{0}$
+\end_inset
+
+ with equally-spaced interval.
+\end_layout
+
+\begin_layout Standard
+//TODO Description of numerical method
+\end_layout
+
+\begin_layout Standard
+Figure 5 below gives solutions with different initial conditions, with different
+ colors corresponding to different 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+ Notice that the lines of the same color basically overlap with each other,
+ indicating that changes in 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+ do not cause significant change.
+ Thus, the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is dominated by 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+Second, we check dependence on the parameters 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ We initialize 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+with different values, respectively, and fix the parameters 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+.
+ Assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+, with equally-spaced interval; 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+, respectively, be 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 1, with equally-spaced interval.
+\end_layout
+
+\begin_layout Standard
+//TODO Description of numerical method
+\end_layout
+
+\begin_layout Standard
+Figure 6 below gives solutions with different parameters, with different
+ colors corresponding to different 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+ Notice that the lines of the same color basically overlap with each other,
+ indicating that changes in 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ do not cause significant change.
+ Thus, the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is still dominated by 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+%%Optional: (Hard to express the process)
+\end_layout
+
+\begin_layout Standard
+Therefore, it is reasonable to assume that there exists a threshold value
+ 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, such that for 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ greater than 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, human could not survive, and for 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ smaller than 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, human could survive.
+\end_layout
+
+\begin_layout Standard
+//TODO
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To calculate such 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, we first define extinction as 
+\end_layout
+
+\begin_layout Standard
+We assume 
+\begin_inset Formula $R_{0}=S_{0}=3\times e^{8}$
+\end_inset
+
+ and use the bisection method to find 
+\end_layout
+
+\begin_layout Standard
+We find such value to be 
+\begin_inset Formula $1.5946\times10^{8}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+//end TODO
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To further evaluate how quarantine affect the human population 
+\begin_inset Formula $S(t)$
+\end_inset
+
+, fix 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, as they are not significantly influencing the behavior of 
+\begin_inset Formula $S(t),$
+\end_inset
+
+ and assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with different values.
+ The behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is shown in Figure 7, with solid line representing Part III, dashed line
+ representing Part II, and dotteded line representing Part I.
+ From the figure we can see the dashed line and solid line basically overlap
+ with each other, from which we could probably conclude that quarantine
+ does not have a huge influence.
+ 
+\end_layout
+
+\begin_layout Standard
+%% Optional
+\end_layout
+
+\begin_layout Standard
+//Need More
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+Although 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+do not cause significant change on 
+\begin_inset Formula $S(t)$
+\end_inset
+
+, there was indeed some minor differences between the solutions with different
+ values of 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+Again, for each value of 
+\begin_inset Formula $Z_{0},$
+\end_inset
+
+ we compute a base solution 
+\begin_inset Formula $X_{b}$
+\end_inset
+
+ with 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ set to zero, and a new solution 
+\begin_inset Formula $X$
+\end_inset
+
+ for each value of 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, respectively, in a way similar to Part I .
+ The difference 
+\begin_inset Formula $X-X_{b}$
+\end_inset
+
+ is plotted in Figure 7.
+ The difference has the order of magnitude of 
+\begin_inset Formula $10^{1}$
+\end_inset
+
+, and is infinitesimal with respect to 
+\begin_inset Formula $10^{8}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+//end Need More
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Fig2.1.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Population Change with Different Values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Fig3.0.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Population Change for Part I and Part II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Part2Fig3.0.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Difference in Solution Caused by Change in 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+\noindent
+\align left
+
+\shape italic
+\size large
+4.
+ Treatment Model
+\end_layout
+
+\begin_layout Standard
+Again, to begin with, we investigate the dependence of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ on the parameters 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ We initialize 
+\begin_inset Formula $Z_{0},$
+\end_inset
+
+ 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $c$
+\end_inset
+
+ with different values respectively.
+ Assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+ with equally-spaced interval; 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, respectively, be 11 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $2\cdot S_{0}$
+\end_inset
+
+ with equally-spaced interval; 
+\begin_inset Formula $c$
+\end_inset
+
+ be 11 distinct values ranging from 0 to 1, with equally spaced interval.
+\end_layout
+
+\begin_layout Standard
+//TODO Description of numerical method
+\end_layout
+
+\begin_layout Standard
+Figure 8 below gives solutions with different initial conditions, with different
+ colors corresponding to different 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+ Notice that the lines of the same color basically overlap with each other,
+ indicating that changes in 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $c$
+\end_inset
+
+do not cause significant change.
+ Thus, the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is dominated by 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+%%Optional: (Hard to express the process)
+\end_layout
+
+\begin_layout Standard
+Therefore, it is reasonable to assume that there exists a threshold value
+ 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, such that for 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ greater than 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, human could not survive, and for 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ smaller than 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, human could survive.
+\end_layout
+
+\begin_layout Standard
+//TODO
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To calculate such 
+\begin_inset Formula $Z_{h}$
+\end_inset
+
+, we first define extinction as 
+\end_layout
+
+\begin_layout Standard
+We assume 
+\begin_inset Formula $R_{0}=S_{0}=3\times e^{8}$
+\end_inset
+
+ and use the bisection method to find 
+\end_layout
+
+\begin_layout Standard
+We find such value to be 
+\begin_inset Formula $1.5946\times10^{8}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+//end TODO
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To further evaluate how treatment affect the human population 
+\begin_inset Formula $S(t)$
+\end_inset
+
+, we plot the human population 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ for Part I, Part II, Part III, and Part IV on the same figure, with several
+ values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+.
+ We fix all other parameters, i.e.
+ 
+\begin_inset Formula $I_{0}=S_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}=S_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $Q_{0}=S_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\kappa=0.1$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma=0.1$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma=0.1$
+\end_inset
+
+, and 
+\begin_inset Formula $c$
+\end_inset
+
+, as they are not significantly influencing the behavior of 
+\begin_inset Formula $S(t),$
+\end_inset
+
+ and assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with different values.
+ The behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is shown in Figure 9, with solid line representing Part IV, dashed line
+ representing Part II, dash-dot line representing Part IV, and dotted line
+ representing Part I.
+ From the figure we can see the dashed line, dash-dot line, and solid line
+ basically overlap with each other, from which we could probably conclude
+ that treatment does not have a huge influence.
+ 
+\end_layout
+
+\begin_layout Standard
+%% Optional
+\end_layout
+
+\begin_layout Standard
+// TODO
+\end_layout
+
+\begin_layout Standard
+Nonetheless, there was indeed some minor differences between the solutions
+ of each Part.
+\end_layout
+
+\begin_layout Standard
+Plot difference etc...
+\end_layout
+
+\begin_layout Standard
+// end TODO
+\end_layout
+
+\begin_layout Standard
+%% Optional
+\end_layout
+
+\begin_layout Standard
+//Need More
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+Although 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ does not cause significant change on 
+\begin_inset Formula $S(t)$
+\end_inset
+
+, there was indeed some minor differences between the solutions with different
+ values of 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+Again, for each value of 
+\begin_inset Formula $Z_{0},$
+\end_inset
+
+ we compute a base solution 
+\begin_inset Formula $X_{b}$
+\end_inset
+
+ with 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ set to zero, and a new solution 
+\begin_inset Formula $X$
+\end_inset
+
+ for each value of 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, respectively, in a way similar to Part I .
+ The difference 
+\begin_inset Formula $X-X_{b}$
+\end_inset
+
+ is plotted in Figure 7.
+ The difference has the order of magnitude of 
+\begin_inset Formula $10^{1}$
+\end_inset
+
+, and is infinitesimal with respect to 
+\begin_inset Formula $10^{8}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+//end Need More
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Fig2.1.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Population Change with Different Values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Fig3.0.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Population Change for Part I and Part II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Part2Fig3.0.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Difference in Solution Caused by Change in 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Bibliography
+\end_layout
+
+\begin_layout Standard
+Alfio Q, Riccardo S, Fausto S.
+ Numerical Mathematics.
+ New York: Springer-Verlag New York
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,86 @@
+Checkoff1:
+void (*funPtr) (char* str) = NULL;
+
+Checkoff 2:
+
+The addresses of a_var and myFuncPointer (Note: the address of the pointer, not the pointer itself) are close to each other, 
+since their declarations are close to each other, 
+(and we probably can assume that the memory allocation is done sequentially),
+therefore the values printed on the first line and the third line are close to each other;
+
+The second line prints the value of myFuncPointer (Note: the value of the pointer, not the address), which is the address of the function some_func,
+the declaration of some_func is not next to the declaration of a_var and myFuncPointer (we can probably assume that),
+and therefore its address is not near the addresses of the other two,
+and therefore the second line is quite different.
+
+Checkoff 3:
+#include <stdio.h>
+
+int a[] = {30, 40, 50, 10, 20};
+
+int myCompare(int a, int b)
+{
+    return a > b;
+}
+
+int myMin(int array[], int size, int (*comp)(int,int))
+{
+    int i;
+    int minIndex = 0;
+    int minValue = array[0];
+    
+    for (i = 1; i < size; i++)
+        if (comp(array[i], minValue)) {
+            minValue = array[i];
+            minIndex = i;
+        }
+    return minIndex;
+}
+
+void mySelectionSort(int array[], int N, int (*comp)(int,int))
+{
+    int i, j, t;
+    int *p = array;
+    
+    for (i = 0; i < N-1; i++) {
+        j = myMin(p,N-i,comp);
+        t = array[i];
+        array[i] = array[i+j];
+        array[i+j] = t;
+        p += 1;
+    }
+}
+
+int main( )
+{
+    int i;
+    
+    for (i = 0; i < 5; i++)
+        printf("%d: %d\n", i, a[i]);
+    printf("\n");
+    
+    mySelectionSort(a, 5,myCompare);
+    
+    for (i = 0; i < 5; i++)
+        printf("%d: %d\n", i, a[i]);
+    printf("\n");
+}
+
+Checkoff 4:
+Add this line before function declarations:
+typedef int (*int2_1) (int,int);
+
+Change the function signatures to:
+int myMin(int array[], int size, int2_1 comp)
+void mySelectionSort(int array[], int N, int2_1 comp)
+
+Checkoff 5:
+In my past coding experiences, when I have to call different yet similar functions or perform different yet similar tasks based on the value of some variable, I have to write a switch where every case is implemented separately but extremely similarly.
+
+This creates huge redundancy and limits the number of cases.
+
+With the use call back function, I can write functions with the same argument type and return type (well, not exactly, I can also write the argument type as void and then cast, but you get the idea) to perform those different yet similar tasks,
+and then store the pointers to those functions in an array,
+and then use a for loop to iteratively call the functions in the array.
+
+A specific application of such use of callback functions would be testing some numerical integration method on different functions.

@@ -1,0 +1,2080 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 2.5cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Project 4: Zombies Outbreak
+\end_layout
+
+\begin_layout Author
+Chenxi Huang, Siyang Jing and Yingqiao Zhou
+\end_layout
+
+\begin_layout Date
+November 27, 2017
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\series bold
+\size larger
+Introduction
+\end_layout
+
+\begin_layout Standard
+This report introduces four zombies outbreak models, each of which is a
+ system of first-order, nonlinear differential equations.
+ We will use the Heun method to give numerical approximations of these models
+ and analyze the behaviors of different classes in each model.
+ Specifically, with one given initial condition of a specific class in a
+ model, we will evaluate how the changes of initial conditions of other
+ classes and the changes of parameters influence the decaying rate of that
+ class.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\series bold
+\size larger
+Statement of Problem
+\end_layout
+
+\begin_layout Standard
+The four zombie outbreak: Basic model, Latent infection model, Quarantine
+ model and Treatment model is given as follows.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Figures/model.png
+	scale 30
+	BoundingBox 0bp 0bp 877bp 560bp
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For all the models above, 
+\begin_inset Formula $S$
+\end_inset
+
+, 
+\begin_inset Formula $Z$
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+ denote the susceptible, zombie and removed class respectively; 
+\begin_inset Formula $I$
+\end_inset
+
+ in Part II denotes the infected class and 
+\begin_inset Formula $Q$
+\end_inset
+
+ in Part III denotes the quarantine class; 
+\begin_inset Formula $\Pi,\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\delta$
+\end_inset
+
+ represent the rate of birth, transmission from 
+\begin_inset Formula $Q$
+\end_inset
+
+ and non-zombie related death rate respectively.
+ 
+\begin_inset Formula $\alpha,\zeta$
+\end_inset
+
+ and 
+\begin_inset Formula $\rho$
+\end_inset
+
+ represent the rate of zombies defeated, the rate of resurrection from 
+\begin_inset Formula $R$
+\end_inset
+
+ to 
+\begin_inset Formula $Z$
+\end_inset
+
+ and the rate of transmission from 
+\begin_inset Formula $I$
+\end_inset
+
+ to 
+\begin_inset Formula $Z$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\kappa,\sigma$
+\end_inset
+
+ and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ represent the rates of entering at 
+\begin_inset Formula $Q$
+\end_inset
+
+ from 
+\begin_inset Formula $I$
+\end_inset
+
+ , from 
+\begin_inset Formula $Z$
+\end_inset
+
+ and the rate of 
+\begin_inset Formula $I$
+\end_inset
+
+ being killed.
+ 
+\begin_inset Formula $c$
+\end_inset
+
+ represents the rate of zombies being cured.
+ In this project, 
+\begin_inset Formula $\alpha=\rho=0.005,$
+\end_inset
+
+ 
+\begin_inset Formula $\beta=0.0095,$
+\end_inset
+
+ 
+\begin_inset Formula $\zeta=0.0001,$
+\end_inset
+
+ 
+\begin_inset Formula $\Pi=\delta=0.0001$
+\end_inset
+
+ and 
+\begin_inset Formula $S(0)=S_{0}=3\times10^{8}.$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+We need to evaluate under which initial condition 
+\begin_inset Formula $(Z_{0},R_{0})$
+\end_inset
+
+ would human kind 
+\begin_inset Formula $(S)$
+\end_inset
+
+ survive in Part I, the effect of the latent infection 
+\begin_inset Formula $(I)$
+\end_inset
+
+ to the model in Part II, the effect of quarantine 
+\begin_inset Formula $(Q)$
+\end_inset
+
+ to the model in Part III and at which rate 
+\begin_inset Formula $(c)$
+\end_inset
+
+ to treat zombies so that human kind 
+\begin_inset Formula $(S)$
+\end_inset
+
+ could survive in Part IV.
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\series bold
+\size larger
+Numerical Method
+\end_layout
+
+\begin_layout Standard
+To solve for the four models, we will use Heun's method given by the following
+ formula:
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset Formula 
+\begin{equation}
+u_{n+1}=u_{n}+\frac{h}{2}[f_{n}+f(t_{n+1},u_{n}+hf_{n})]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Heun's method is an explicit method, which demands less computational cost
+ than implicit method.
+ An explicit method could be evaluated directly in terms of known quantities
+ at the previous time step, whereas an implicit method generally requires
+ a matrix or iterative solution to compute the new quantities since unknowns
+ are at the both sides of an equation.
+ Besides, the Heun's method is a method of order 2, and thereby gives more
+ accurate approximations than first-order methods.
+ The estimate of truncation error 
+\begin_inset Formula $\tau_{n}$
+\end_inset
+
+ is derived as follows.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset Formula $\tau_{n}=\frac{u(t_{n+1})-u(t_{n})}{h}-\frac{1}{2}(f_{n}+f(t_{n+1},u(t_{n})+hu'(t_{n})))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset Formula $=u'(t_{n})+\frac{h}{2!}u^{(2)}(t_{n})+\mathcal{O}(h^{2})-\frac{1}{2}\left[u'(t_{n})+u'(t_{n})+hf'(t_{n},u_{n})+\mathcal{O}(h^{2})\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset Formula $=u'(t_{n})+\frac{h}{2}u^{(2)}(t_{n})+\mathcal{O}(h^{2})-\frac{1}{2}(2\cdot u'(t_{n})+hu^{(2)}(t_{n})+\mathcal{O}(h^{2}))=\mathcal{O}(h^{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We are curious about the behavior of the error, such as convergence and
+ stability, when applying Heun's method to these specific models.
+ Since the models are non-linear, and difficult to solve analytically, it's
+ hard to get a theoretical bound for the error and stability region for
+ the time step.
+ Nevertheless, we can still get some knowledge of the behavior of the error,
+ by comparing the solutions obtained with different time steps.
+ First we rewrite the four models as non-linear systems.
+\end_layout
+
+\begin_layout Standard
+
+\size scriptsize
+\begin_inset Formula 
+\begin{equation}
+X_{I}\left(t\right)=\left(\begin{array}{c}
+S\left(t\right)\\
+Z\left(t\right)\\
+R\left(t\right)
+\end{array}\right)F_{I}\left(X_{I}\right)=\left(\begin{array}{c}
+\Pi-\beta SZ-\delta S\\
+\beta SZ+\zeta R-\alpha SZ\\
+\delta S+\alpha SZ-\zeta R
+\end{array}\right)X_{I}'=F_{I}\left(X_{I}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size scriptsize
+\begin_inset Formula 
+\begin{equation}
+X_{I}\left(t\right)=\left(\begin{array}{c}
+S\left(t\right)\\
+Z\left(t\right)\\
+R\left(t\right)
+\end{array}\right)F_{II}\left(X_{II}\right)=\left(\begin{array}{c}
+\Pi-\beta SZ-\delta S\\
+\beta SZ-\rho I-\delta I\\
+\rho I+\zeta R-\alpha SZ\\
+\delta S+\delta I+\alpha SZ-\zeta R
+\end{array}\right)X_{II}'=F_{II}\left(X_{II}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size scriptsize
+\begin_inset Formula 
+\begin{equation}
+X_{III}\left(t\right)=\left(\begin{array}{c}
+S\left(t\right)\\
+I\left(t\right)\\
+Z\left(t\right)\\
+R\left(t\right)\\
+Q\left(t\right)
+\end{array}\right)F_{III}\left(X_{III}\right)=\left(\begin{array}{c}
+\Pi-\beta SZ-\delta S\\
+\beta SZ-\rho I-\delta I-\kappa I\\
+\rho I+\zeta R-\alpha SZ-\sigma Z\\
+\delta S+\delta I+\alpha SZ-\zeta R\\
+\kappa I+\sigma Z-\gamma Q
+\end{array}\right)X_{III}'=F_{III}\left(X_{III}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size scriptsize
+\begin_inset Formula 
+\begin{equation}
+X_{IV}\left(t\right)=\left(\begin{array}{c}
+S\left(t\right)\\
+I\left(t\right)\\
+Z\left(t\right)\\
+R\left(t\right)
+\end{array}\right)F_{IV}\left(X_{IV}\right)=\left(\begin{array}{c}
+\Pi-\beta SZ-\delta S+cZ\\
+\beta SZ-\rho I-\delta I\\
+\rho I+\zeta R-\alpha SZ-cZ\\
+\delta S+\delta I+\alpha SZ-\zeta R
+\end{array}\right)X_{IV}'=F_{IV}\left(X_{IV}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For each of the four models, we assign the initial condition 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+ with equally-spaced interval, and set the other initial conditions 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+ to 0, and the other parameters to 0.1.
+ We keep all the parameters, except 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, constant because in later discussions, we find that, for all the four
+ models, the behavior of the solution 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is dominated by 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, and the other parameters have considerably insignificant influence on
+ the solution.
+\end_layout
+
+\begin_layout Standard
+For each model and each 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, we assign time step sizes 
+\begin_inset Formula $h$
+\end_inset
+
+ with 
+\begin_inset Formula $10^{-7},10^{-8},10^{-9},10^{-10},10^{-11}$
+\end_inset
+
+, and time interval 
+\begin_inset Formula $\left[0,10^{-4}\right]$
+\end_inset
+
+, after which the solutions stay considerably stable and roughly constant,
+ and then apply Heun's method to get 5 solutions 
+\begin_inset Formula $S_{i}\left(t_{j}\right)$
+\end_inset
+
+, 
+\begin_inset Formula $i=1,2,3,4,5$
+\end_inset
+
+, 
+\begin_inset Formula $j$
+\end_inset
+
+ standing for the time steps.
+ Among the 5 solutions, the one obtained with the smallest time step, i.e.
+ 
+\begin_inset Formula $S_{5}\left(t_{j}\right)$
+\end_inset
+
+, is supposed to be the most accurate.
+ We then calculate the maximum error of the other solutions relative to
+ 
+\begin_inset Formula $S_{5}\left(t\right)$
+\end_inset
+
+, defined as:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula 
+\begin{equation}
+e_{i}=\underset{j}{\max}\left\{ \left|\frac{S_{i}\left(t_{j}\right)-S_{5}\left(t_{j}\right)}{S_{5}\left(t_{j}\right)}\right|\right\} \,,\:i=1,2,3,4
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 1-4 below show the log versus log plots of such max relative error
+ against step sizes, for each 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ and each model, respectively.
+ We can see that for each line, except those for 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+=0 in Part II, III, and IV, the slop is roughly 2, which means the error
+ shows approximately quadratic convergence, as we expected from the order
+ 2 convergence of Heun's method.
+ For those exceptions, the error stays at a considerably small number, which
+ does not undermine the general convergence of the method.
+ Therefore, we can reasonably assume that with the time step size 
+\begin_inset Formula $h$
+\end_inset
+
+ in the range of 
+\begin_inset Formula $10^{-7}$
+\end_inset
+
+ to 
+\begin_inset Formula $10^{-11}$
+\end_inset
+
+, the numerical method is stable and convergent.
+ Therefore, in numerically solving all the differential equations below,
+ unless stated otherwise, we set the time step to 
+\begin_inset Formula $h=10^{-10}$
+\end_inset
+
+, which takes considerably less time than 
+\begin_inset Formula $h=10^{-11}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align left
+\begin_inset Graphics
+	filename Figures/Fig2.1.0.jpg
+	scale 25.5
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/Fig3.1.0.jpg
+	scale 25.5
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+(Left) log-log of Estimated Relative Error versus Time Step, Part I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+(Right) log-log of Estimated Relative Error versus Time Step, Part II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align left
+\begin_inset Graphics
+	filename Figures/Figure4.1.jpg
+	scale 26
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/Fig5.1.jpg
+	scale 26
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+(Left) log-log of Estimated Relative Error versus Time Step, Part III
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+(Right) log-log of Estimated Relative Error versus Time Step, Part IV
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\series bold
+\size larger
+Discussion
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+\size large
+1.
+ Basic Model 
+\end_layout
+
+\begin_layout Standard
+From equation 
+\begin_inset Formula $S^{'}=\Pi-\beta SZ-\delta S$
+\end_inset
+
+, both 
+\begin_inset Formula $Z$
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+ have negative effect on the growth rate of the susceptible class.
+ Consider an optimal case that minimizes the negative effect with 
+\begin_inset Formula $Z_{0}=0$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}=0$
+\end_inset
+
+ as they are forced to be nonnegative.
+ We try to numerically solve (2) with such initial condition by applying
+ Heun's method (1) to get the solution.
+ We set the time step to 
+\begin_inset Formula $h=10^{-10}$
+\end_inset
+
+, the time interval to 
+\begin_inset Formula $tspan=[0,10^{-4}]$
+\end_inset
+
+, and the initial value to 
+\size scriptsize
+
+\begin_inset Formula $X_{I}\left(0\right)=\left(\begin{array}{ccc}
+S_{0}, & 0, & 0\end{array}\right)^{T}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The solution to the Basic Model with optimal initial condition is given
+ by Figure 5, which implies that the susceptible will eventually die out
+ even for the extreme case in which initially there is no Zombies or the
+ Removed.
+ In that case, we are capable of deducing the conclusion that for any values
+ of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ will eventually decay to zero.
+ Thus, under no initial conditions could human kind survive.
+ Nevertheless, we still want to investigate the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ with different values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+First, we fix the value of 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ at 
+\begin_inset Formula $3\times10^{8}$
+\end_inset
+
+.
+ In Figure 6 below, solutions 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ are plotted with different colors corresponding to the 6 different values
+ of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ ranging from 0 to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+.
+ We can see that the speed of the decay of population varies, but all decay
+ to sufficiently near zero eventually, again confirming our reasoning that
+ human will extinct regardless of initial condition.
+ 
+\end_layout
+
+\begin_layout Standard
+In addition, when 
+\begin_inset Formula $Z_{0}=0,$
+\end_inset
+
+ the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ exhibits significant dependence on 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+.
+ Figure 7 below shows the trend of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ with fixed 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ at 0, in which different colors correspond to different 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ values.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/Fig1.0.0.jpg
+	scale 28
+	BoundingBox 0bp 0bp 1026bp 640bp
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing other 0.8
+
+\size scriptsize
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Population Change with 
+\begin_inset Formula $Z_{0}=0$
+\end_inset
+
+, and 
+\begin_inset Formula $R_{0}=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align left
+\begin_inset Graphics
+	filename Figures/Fig2.0.0.jpg
+	scale 28
+	BoundingBox 50bp 25bp 900bp 630bp
+	clip
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/Fig3.0.0.jpg
+	scale 28
+	BoundingBox 50bp 25bp 900bp 630bp
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing other 0.8
+
+\size footnotesize
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size footnotesize
+(Left) Population Change with Different 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}=3\times10^{8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing other 0.8
+
+\size footnotesize
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size footnotesize
+(Right) Population Change with Different Initial 
+\begin_inset Formula $R$
+\end_inset
+
+ and Fixed 
+\begin_inset Formula $Z=0$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+\size large
+2.
+ Latent infection Model
+\end_layout
+
+\begin_layout Standard
+To check the effect of latent infection, we initialize 
+\begin_inset Formula $Z_{0},$
+\end_inset
+
+ 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ with different values respectively.
+ Assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+ with equally-spaced interval; 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ be 11 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $2\cdot S_{0}$
+\end_inset
+
+ with equally-spaced interval; 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ be 11 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $2\cdot S_{0}$
+\end_inset
+
+ with equally-spaced interval.
+ We apply Heun's method (1) to (3) to get the solution.
+ Set the time step to 
+\begin_inset Formula $h=10^{-10}$
+\end_inset
+
+, the time interval to 
+\begin_inset Formula $tspan=[0,10^{-4}]$
+\end_inset
+
+, and the initial value to 
+\size scriptsize
+
+\begin_inset Formula $X_{II}\left(0\right)=\left(\begin{array}{cccc}
+S_{0}, & I_{0}, & Z_{0}, & R_{0}\end{array}\right)^{T}$
+\end_inset
+
+
+\size default
+.
+ Figure 8 below gives solutions with different initial conditions, with
+ different colors corresponding to different 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Notice that the lines of the same color basically overlap with each other,
+ indicating that changes in 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ does not cause significant change.
+ Thus, the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is dominated by 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+ We can also see that for certain values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ does not decay to zero, but rather seem to converge to a non-zero number.
+ Such behavior is not observed in Part I.
+ In addition, the final stable human population 
+\begin_inset Formula $S(t_{n})$
+\end_inset
+
+ seems to be dependent on 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+.
+ Specifically, the more initial zombies there are, the less final human
+ population would be, which is certainly reasonable in this situation.
+ 
+\end_layout
+
+\begin_layout Standard
+To further evaluate how latent infection affect the human population 
+\begin_inset Formula $S(t)$
+\end_inset
+
+, fix 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{o}$
+\end_inset
+
+ as they are not significantly influencing the behavior of 
+\begin_inset Formula $S(t),$
+\end_inset
+
+ and assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with different values ranging from 
+\begin_inset Formula $1.5\times10^{8}$
+\end_inset
+
+ to 
+\begin_inset Formula $3\times10^{8}$
+\end_inset
+
+ with equally spaced interval.
+ Applying (1) to (2) and(3) with these initial conditions, we get the solutions
+ of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ in different parts, as shown in Figure 9, with solid line representing
+ Part II and dashed line representing Part I.
+ Then we can see that latent infection reduced the rate of decay in 
+\begin_inset Formula $S(t)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing other 0.6
+\align left
+\begin_inset Graphics
+	filename Figures/Fig4.0.0.jpg
+	scale 29
+	BoundingBox 40bp 20bp 880bp 640bp
+	clip
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/Fig5.0.0.jpg
+	scale 29
+	BoundingBox 40bp 20bp 880bp 640bp
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing single
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size footnotesize
+(Left) Population Change with Different Values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing single
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size footnotesize
+(Right) Population Change for Part I and Part II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+\size large
+3.
+ Quarantine Model
+\end_layout
+
+\begin_layout Standard
+We need to investigate the dependence of 
+\begin_inset Formula $S$
+\end_inset
+
+ on initial conditions 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+, and parameters 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+First, we check dependence on the initial conditions by initializing 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+ with different values respectively and fixing the parameters 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ Assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+, with equally-spaced interval; 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+, respectively, be 11 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $2\cdot S_{0}$
+\end_inset
+
+ with equally-spaced interval.
+ Fix 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, respectively, to be 
+\begin_inset Formula $0.1$
+\end_inset
+
+.
+ Set the time step to 
+\begin_inset Formula $h=10^{-10}$
+\end_inset
+
+, the time interval to 
+\begin_inset Formula $tspan=[0,10^{-4}]$
+\end_inset
+
+, and the initial value to 
+\size scriptsize
+
+\begin_inset Formula $X_{III}\left(0\right)=\left(\begin{array}{ccccc}
+S_{0}, & I_{0}, & Z_{0}, & R_{0}, & Q_{0}\end{array}\right)^{T}$
+\end_inset
+
+.
+
+\size default
+ Apply Heun's method (1) to equation (4) to get the solutions with different
+ initial conditions, which is shown in Figure 10, with different colors
+ corresponding to different 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+ Notice that the lines of the same color basically overlap with each other,
+ indicating that changes in 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+ do not cause significant change.
+ Thus, the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is dominated by 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Second, we check dependence on the parameters 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+by initializing 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+with different values, respectively, and fixing the parameters 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+.
+ Assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+, with equally-spaced interval.
+ For each 
+\begin_inset Formula $Z_{0},$
+\end_inset
+
+ assign 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, respectively, be 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 1, with equally-spaced interval.
+ Fix 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+, respectively, to be 
+\begin_inset Formula $3\times10^{8}$
+\end_inset
+
+.
+ Set the time step to 
+\begin_inset Formula $h=10^{-10}$
+\end_inset
+
+, the time interval to 
+\begin_inset Formula $tspan=[0,10^{-4}]$
+\end_inset
+
+, and the initial value to 
+\size scriptsize
+
+\begin_inset Formula $X_{III}\left(0\right)=\left(\begin{array}{ccccc}
+S_{0}, & S_{0}, & Z_{0}, & S_{0}, & S_{0}\end{array}\right)^{T}$
+\end_inset
+
+.
+
+\size default
+ Apply Heun's method (1) to (4) to get the solutions with different parameters,
+ which is shown in Figure 11, with different colors corresponding to different
+ 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+ Notice that the lines of the same color basically overlap with each other,
+ indicating that changes in 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ do not cause significant change.
+ Thus, the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is barely dependent of parameters 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma.$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+To further evaluate how quarantine affects the human population 
+\begin_inset Formula $S(t)$
+\end_inset
+
+, fix 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+, respectively, to be 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+; 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, respectively, be 0.2 as they are not significantly influencing the behavior
+ of 
+\begin_inset Formula $S(t),$
+\end_inset
+
+ and assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+, with equally-spaced interval.
+ Set the time step to 
+\begin_inset Formula $h=10^{-10}$
+\end_inset
+
+, the time interval to 
+\begin_inset Formula $tspan=[0,10^{-4}]$
+\end_inset
+
+, and the initial value to 
+\size scriptsize
+
+\begin_inset Formula $X_{I}\left(0\right)=\left(\begin{array}{ccc}
+S_{0}, & Z_{0}, & S_{0}\end{array}\right)^{T}$
+\end_inset
+
+, 
+\begin_inset Formula $X_{II}\left(0\right)=\left(\begin{array}{cccc}
+S_{0}, & S_{0}, & Z_{0}, & S_{0}\end{array}\right)^{T}$
+\end_inset
+
+, 
+\begin_inset Formula $X_{III}\left(0\right)=\left(\begin{array}{ccccc}
+S_{0}, & S_{0}, & Z_{0}, & S_{0}, & S_{0}\end{array}\right)^{T}$
+\end_inset
+
+.
+
+\size default
+ Apply Heun's method (1) to (2), (3), and (4), respectively, to get the
+ solution to each part, as shown in Figure 12, with solid line representing
+ Part III, dashed line representing Part II, and dotted line representing
+ Part I.
+ From the figure we can see the dashed line and solid line basically overlap
+ with each other, thus quarantine does not have a huge influence.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\paragraph_spacing other 0.6
+\align left
+\begin_inset Graphics
+	filename Figures/Fig7.0.0.jpg
+	scale 28
+	BoundingBox 50bp 0bp 880bp 653bp
+	clip
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/Fig8.0.0.jpg
+	scale 28
+	BoundingBox 40bp 0bp 900bp 653bp
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing single
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Population Change with Different Values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing single
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Population Change with Different Values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\paragraph_spacing other 0.6
+\align center
+\begin_inset Graphics
+	filename Figures/Fig8.0.0.jpg
+	scale 33
+	BoundingBox 40bp 0bp 900bp 653bp
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing other 0.8
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Population Change for Part I, Part II, and Part III
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+\size large
+4.
+ Treatment Model
+\end_layout
+
+\begin_layout Standard
+Again, we need to investigate the dependence of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ on the parameters 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $c$
+\end_inset
+
+by initializing 
+\begin_inset Formula $Z_{0},$
+\end_inset
+
+ 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $c$
+\end_inset
+
+ with different values respectively.
+ Assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with 6 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+, with equally-spaced interval; 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, respectively, be 11 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $2\cdot S_{0}$
+\end_inset
+
+ with equally-spaced interval; 
+\begin_inset Formula $c$
+\end_inset
+
+ be 11 distinct values ranging from 0 to 1, with equally spaced interval.
+ Set the time step to 
+\begin_inset Formula $h=10^{-10}$
+\end_inset
+
+, the time interval to 
+\begin_inset Formula $tspan=[0,10^{-4}]$
+\end_inset
+
+, and the initial value to 
+\size scriptsize
+
+\begin_inset Formula $X_{IV}\left(0\right)=\left(\begin{array}{cccc}
+S_{0}, & I_{0}, & Z_{0}, & R_{0}\end{array}\right)^{T}$
+\end_inset
+
+.
+
+\size default
+ Apply Heun's method (1) to equation (5) to get the solutions of different
+ initial conditions, with different colors corresponding to different 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+ The result is shown in Figure 13.
+ Notice that the lines of the same color basically overlap with each other,
+ indicating that changes in 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $c$
+\end_inset
+
+do not cause significant change.
+ Thus, the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is dominated by 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ and barely dependent of the parameter 
+\begin_inset Formula $c.$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+To further evaluate how treatment affects the human population 
+\begin_inset Formula $S(t)$
+\end_inset
+
+, we plot the human population 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ in different parts on the same figure.
+ Fix 
+\begin_inset Formula $I_{0}=S_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}=S_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $Q_{0}=S_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\kappa=0.1$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma=0.1$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma=0.1$
+\end_inset
+
+, and 
+\begin_inset Formula $c=0.1$
+\end_inset
+
+, as they are not significantly influencing the behavior of 
+\begin_inset Formula $S(t),$
+\end_inset
+
+ and assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with different values.
+ The solution to each part is shown in Figure 14, with solid line representing
+ Part IV, dashed line representing Part II, dash-dot line representing Part
+ IV, and dotted line representing Part I.
+ From the figure we can see the dashed line, dash-dot line, and solid line
+ basically overlap with each other, indicating treatment does not have a
+ huge influence on 
+\begin_inset Formula $S(t)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\paragraph_spacing single
+\noindent
+\align left
+\begin_inset Graphics
+	filename Figures/Fig9.0.0.jpg
+	scale 27
+	BoundingBox 40bp 20bp 900bp 630bp
+	clip
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/Fig10.0.0.jpg
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing other 0.8
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size footnotesize
+(Left) Population Change with Different Values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $c$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing other 0.8
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size footnotesize
+(Right) Population Change for Part I, II, III, and IV
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\series bold
+\size larger
+Conclusion
+\end_layout
+
+\begin_layout Standard
+We used Heun's method to solve the non-linear system of ordinary differential
+ equations (1)-(4).
+ We find that in Part I, human will extinct regardless of initial condition,
+ as shown in Figure 6 and 7.
+ In Part II, with latent infection, human population will not decay to zero
+ with small values of initial zombie population, and the initial population
+ of the removed does not have a significant influence, as shown in Figure
+ 8; in the situation where human will extinct, the rate of decay of human
+ population is slowed, compared with Part I, as shown in Figure 9.
+ In Part III and IV, we find that the situation is not significantly different
+ from that of Part II, and the dominant factor is still initial zombie populatio
+n, and other parameters do not play an important role.
+\end_layout
+
+\end_body
+\end_document

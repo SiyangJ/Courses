@@ -1,0 +1,104 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 0x00000078\
+0x0000003C\
+\
+\
+\
+\
+\
+0x0000004C\
+0x00000028\
+10\
+\
+\
+\
+\
+\
+\
+The last two lines are repeated forever.\
+LR, R5, SP\
+BLE return\
+\
+\
+\
+\
+\
+\
+fact:   \
+           SUB	SP,SP,#8\
+           STR	LR,[SP,#4]\
+	   STR	R5,[SP,#0]\
+           CMP     R0,#1           ; if (x <= 1)\
+           BLE       return              ;      return x;\
+           MOV     R5,R0    \
+           SUB      R0,R0,#1        ; else\
+           BL         fact                ;      return fact(x-1)*x\
+           MUL     R0,R0,R5\
+\
+return: LDR     R5,[SP,#0]\
+            LDR     LR,[SP, #4]\
+            ADD     SP, SP, #8\
+             BX      LR\
+\
+\
+\
+\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\
+.word   0x03fffffc, main\
+\
+y: .space 5        ; int y[5]\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\
+poly3: SUB SP, SP, #4\
+STR R4, [SP, #0]\
+LDR R4, [SP, #4]\
+MUL R0, R0, R4\
+ADD R0, R0, R1\
+MUL R0, R0, R4\
+ADD R0, R0, R2\
+MUL R0, R0, R4\
+ADD R0, R0, R3             ;R0 += D, complete algorithm\
+LDR R4, [SP, #0]           ;restore R4\
+ADD SP, SP, #4             ;restore SP\
+BX LR\
+\
+\
+main:   SUB SP, SP, #4    ; allocate\
+\
+MOV     R0, #1\
+MOV     R1, #-2\
+MOV     R2, #-3\
+MOV     R3, #-4\
+MOV     R5, #1            ; int x = 1\
+\
+\
+MOV R6, #y          ; get y\
+\
+Lfor: CMP R5, #6\
+BEQ Lendfor\
+STR R5, [SP, #0]\
+BL poly3\
+SUB R5, R5, #1\
+STR R0, [R6, R5, LSL #2]\
+ADD R5, R5, #2\
+B Lfor\
+\
+Lendfor:  ADD SP, SP, #4     ; deallocate\
+       		\
+halt:   B	halt\
+\
+\
+\
+0xFFFFFFF8,0xFFFFFFAE,0xFFFFF73B,0xFFFDCE90,0xFEEDDC0B}

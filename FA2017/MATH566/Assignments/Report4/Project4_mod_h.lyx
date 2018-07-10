@@ -1,0 +1,772 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 3cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Project 4: Zombies Outbreak
+\end_layout
+
+\begin_layout Author
+Chenxi Huang, Siyang Jing and Yingqiao Zhou
+\end_layout
+
+\begin_layout Date
+November 27, 2017
+\end_layout
+
+\begin_layout Section*
+Introduction
+\end_layout
+
+\begin_layout Section*
+Statement of the Problem
+\end_layout
+
+\begin_layout Standard
+This project introduces four models relating to zombies outbreak as follows.
+\end_layout
+
+\begin_layout Subsection
+Basic model
+\end_layout
+
+\begin_layout Standard
+For the basic model, we only consider susceptible, zombie and removed.
+ Those three classes are denoted by S, Z and R respectively.
+ Susceptibles can become deceased through 
+\begin_inset Quotes eld
+\end_inset
+
+natural
+\begin_inset Quotes erd
+\end_inset
+
+ causes or zombies through transimission via an encounter with a zombie;
+ the removed class consists of susceptibles or zombies who have died through
+ natural causes or attack; new zombies can come from either the removed
+ group due to the resurrection or the susceptible group who have bbiten
+ by a zombie.
+ The model is given by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{c}
+S'=\Pi-\beta SZ-\delta S\\
+Z'=\beta SZ+\zeta R-\alpha SZ\\
+R'=\delta S+\alpha SZ-\zeta R
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We want to know the initial conditions that human kind can survive.
+\end_layout
+
+\begin_layout Subsection
+Latent infection
+\end_layout
+
+\begin_layout Standard
+Based on the basic model, a new group called infected class (I) is included.
+ Before becoming a zombie, infected susceptibles move to an infected class
+ first and remain there for some period of time, and infected individuals
+ can still die throurgh natural causes.
+ Thus, the model becomes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{c}
+S'=\Pi-\beta SZ-\delta S\\
+I'=\beta SZ-\rho I-\delta I\\
+Z'=\rho I+\zeta R-\alpha SZ\\
+R'=\delta S+\delta I+\alpha SZ-\zeta R
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We want to know the effect of latent inffection and if human kind can survive
+ in this model.
+\end_layout
+
+\begin_layout Subsection
+Quarantine
+\end_layout
+
+\begin_layout Standard
+The effects of quarantine (Q) of zombies has been modeled on the basis of
+ the model in part 2.
+ The quarantined area only contains members of the infected or zombie population
+s.
+ Moreover, any members in this group tried to escape would be killed before
+ finding their 
+\begin_inset Quotes eld
+\end_inset
+
+freedom
+\begin_inset Quotes erd
+\end_inset
+
+, and these killed individuals enter the removed class.
+ Now, the model is 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{c}
+S'=\Pi-\beta SZ-\delta S\\
+I'=\beta SZ-\rho I-\delta I-\kappa I\\
+Z'=\rho I+\zeta R-\alpha SZ-\sigma Z\\
+R'=\delta S+\delta I+\alpha SZ-\zeta R\\
+Q'=\kappa I+\sigma Z-\gamma Q
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We want to know the effect of quarantine and if human kind can survive.
+\end_layout
+
+\begin_layout Subsection
+Treatment
+\end_layout
+
+\begin_layout Standard
+In this model, the quarantne is no longer needed as we have treatment.
+ The cure will allow zombies to become susceptibles again no matter how
+ they becam zombies.
+ The new model is shown below as 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{c}
+S'=\Pi-\beta SZ-\delta S+cZ\\
+I'=\beta SZ-\rho I-\delta I\\
+Z'=\rho I+\zeta R-\alpha SZ-cZ\\
+R'=\delta S+\delta I+\alpha SZ-\zeta R
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We want to know at which rate that wee need to treat zombies to survive.
+\end_layout
+
+\begin_layout Standard
+For all the models above, 
+\begin_inset Formula $\Pi,\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\delta$
+\end_inset
+
+ respectively represent the rate of birth, transmission from S and non-zombie
+ related death.
+ 
+\begin_inset Formula $\alpha,\zeta$
+\end_inset
+
+and 
+\begin_inset Formula $\rho$
+\end_inset
+
+represent the rate of zombies defeated, the rate of resurrection from R
+ to Z and the rate of transmission from I to Z.
+ 
+\begin_inset Formula $\kappa,\sigma$
+\end_inset
+
+and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+represent the rates of entering at Q from I , from Z and the rate of I being
+ killied due to the attempt to escape.
+ And 
+\begin_inset Formula $c$
+\end_inset
+
+ represents the rate of zombies being cured.
+\end_layout
+
+\begin_layout Standard
+In this project, we assume that 
+\begin_inset Formula $\alpha=\rho=0.005,$
+\end_inset
+
+ 
+\begin_inset Formula $\beta=0.0095,$
+\end_inset
+
+ 
+\begin_inset Formula $\zeta=0.0001,$
+\end_inset
+
+ 
+\begin_inset Formula $\Pi=\delta=0.0001$
+\end_inset
+
+ and 
+\begin_inset Formula $S=300million.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+\noindent
+Numerical Method
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To give numerical approximations of the four models, we used the Huen method
+ given by the following formula:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\begin_inset Formula 
+\begin{equation}
+u_{n+1}=u_{n}+\frac{h}{2}[f_{n}+f(t_{n+1},u_{n}+hf_{n})]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+Heun method is an explicit method, which demands less computational cost
+ than implicit method.
+ An explicit method could be evaluated directly in terms of known quantities
+ at the previous time step, whereas an implicit method generally requires
+ a matrix or iterative solution to compute the new quantities since unknowns
+ are at the both sides of an equation.
+ Besides, the Heun method is a method of order 2, and thereby gives more
+ accurate approximations than first-order methods.
+ The estimate of truncation error 
+\begin_inset Formula $\tau_{n}$
+\end_inset
+
+ is derived as follows.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\tau_{n}=\frac{u_{n+1}-u_{n}}{h}-\frac{1}{2}(f_{n}+f(t_{n+1},u_{n}+hu_{n}^{'}))=u_{n}^{'}+\frac{h}{2!}u_{n}^{''}+\frac{h^{2}}{3!}u_{n}^{(3)}-\frac{1}{2}\left[u_{n}^{'}+u_{n}^{'}+hu_{n}^{'}f^{'}(t_{n},u_{n})+\mathcal{O}(h^{2})\right]$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $=u_{n}^{'}+\frac{h}{2}u_{n}^{''}+\mathcal{O}(h^{2})-\frac{1}{2}(2\cdot u_{n}^{'}+hu_{n}^{''}+\mathcal{O}(h^{2}))=\mathcal{O}(h^{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+\paragraph_spacing double
+\noindent
+Analysis
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+\size large
+1.
+ Basic Model 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+\noindent
+From equation 
+\begin_inset Formula $S^{'}=\Pi-\beta SZ-\delta S$
+\end_inset
+
+, both Z and R have negative effect on the growth rate of the susceptible
+ class.
+ Consider an optimal case that minimizes the negative effect with 
+\begin_inset Formula $Z_{0}=0$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}=0$
+\end_inset
+
+ as they are forced to be nonnegative.
+ The solution to the Basic Model with optimal initial condition is given
+ by Figure 1, which implies that the susceptible class will eventually die
+ out even for the extreme case in which initially there is no members in
+ Zombie class and Removed class.
+ In that case, we are capable of deducing the conclusion that for any values
+ of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ will eventually decay to zero.
+ Thus, under no initial conditions could human kind survive.
+ In addition, it is also noticeable that when 
+\begin_inset Formula $Z_{0}=0,$
+\end_inset
+
+ the result of S exhibits significant dependence on the values of of 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+.
+ Figure 2 below shows the trend of S with fixed 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ at 0, in which different colors correspond to different 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+values.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\paragraph_spacing single
+\align center
+\begin_inset Graphics
+	filename /Users/ashley/Desktop/Report4Fig1.0.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing single
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Population Change with Optimal Condition
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+\noindent
+\align left
+
+\shape italic
+\size large
+2.
+ Latent infection Model
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To check the effect of latent infection, initialize 
+\begin_inset Formula $Z_{0},$
+\end_inset
+
+ 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ with different values respectively.
+ Assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with six distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+ with equally-spaced interval; 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ be 10 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $2\cdot S_{0}$
+\end_inset
+
+ with equally-spaced interval; 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ be 10 distinct values ranging from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $2\cdot S_{0}$
+\end_inset
+
+ with equally-spaced interval.
+ Figure 5 below gives solutions with different initial conditions, with
+ different colors corresponding to different 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+ Notice that the lines of the same color basically overlap with each other,
+ indicating that changes in 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ does not cause significant change.
+ Thus, the behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is dominated by 
+\begin_inset Formula $Z_{0}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To calculate for which values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ could human kind survive, we assume 
+\begin_inset Formula $R_{0}=S_{0}=3\cdot e^{8}$
+\end_inset
+
+ and use the bisection method to find 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+To evaluate how latent infection affect the human population 
+\begin_inset Formula $S$
+\end_inset
+
+, fix 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{o}$
+\end_inset
+
+ as they are not significantly influencing the behavior of 
+\begin_inset Formula $S,$
+\end_inset
+
+ and assign 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ with different values.
+ The behavior of 
+\begin_inset Formula $S(t)$
+\end_inset
+
+ is shown in Figure 6, with solid line representing Part II and dashed line
+ representing Part I.
+ From the figure we can see that latent infection reduced the rate of decay
+ in S.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+Although 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ does not cause significant change on 
+\begin_inset Formula $Z_{0},$
+\end_inset
+
+ there was indeed some minor differences of the solutions with different
+ values of 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+Again, for each value of 
+\begin_inset Formula $Z_{0},$
+\end_inset
+
+ we compute a base solution 
+\begin_inset Formula $X_{b}$
+\end_inset
+
+ with 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ set to zero, and a new solution 
+\begin_inset Formula $X$
+\end_inset
+
+ for each value of 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ in a way resembling to Part I .
+ The difference 
+\begin_inset Formula $X-X_{b}$
+\end_inset
+
+ is plotted in Figure 7.
+ The difference has the order of magnitude of 1e1, and is infinitesimal
+ with respect to 3e8.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Fig2.1.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Population Change with Different Values of 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Fig3.0.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Population Change for Part I and Part II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Report4Part2Fig3.0.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Difference in Solution Caused by Change in 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Bibliography
+\end_layout
+
+\begin_layout Standard
+Alfio Q, Riccardo S, Fausto S.
+ Numerical Mathematics.
+ New York: Springer-Verlag New York
+\end_layout
+
+\end_body
+\end_document
