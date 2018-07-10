@@ -1,0 +1,350 @@
+\documentclass[10pt]{article}
+\usepackage{amsgen,amsmath,amstext,amsbsy,amsopn,amssymb,mathabx,amsthm,bm,bbm,romannum}
+\usepackage[dvips]{graphicx}
+
+\usepackage[pagebackref,hidelinks,bookmarksnumbered]{hyperref}
+\setcounter{tocdepth}{3}
+\usepackage[depth=3]{bookmark}
+
+\usepackage[margin=1in]{geometry}
+\renewcommand{\baselinestretch}{1.5}	% Line Stretch
+
+\usepackage[utf8]{inputenc}
+
+%----- theorems -----%
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{coro}[thm]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{dfn}{Definition}[section]
+\newtheorem*{pchln}{Punchline}
+\newtheorem*{hint}{Hint}
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+\newtheorem{eg}{Example}[section]
+\newtheorem{fact}{Fact}[section]
+
+
+%----- bold fonts -----%
+
+\newcommand{\ab}{\mathbf{a}}
+\newcommand{\bbb}{\mathbf{b}}
+\newcommand{\cbb}{\mathbf{c}}
+\newcommand{\db}{\mathbf{d}}
+\newcommand{\eb}{\mathbf{e}}
+\newcommand{\fb}{\mathbf{f}}
+\newcommand{\gb}{\mathbf{g}}
+\newcommand{\hb}{\mathbf{h}}
+\newcommand{\ib}{\mathbf{i}}
+\newcommand{\jb}{\mathbf{j}}
+\newcommand{\kb}{\mathbf{k}}
+\newcommand{\lb}{\mathbf{l}}
+\newcommand{\mb}{\mathbf{m}}
+\newcommand{\nbb}{\mathbf{n}}
+\newcommand{\ob}{\mathbf{o}}
+\newcommand{\pb}{\mathbf{p}}
+\newcommand{\qb}{\mathbf{q}}
+\newcommand{\rb}{\mathbf{r}}
+\newcommand{\sbb}{\mathbf{s}}
+\newcommand{\tb}{\mathbf{t}}
+\newcommand{\ub}{\mathbf{u}}
+\newcommand{\vb}{\mathbf{v}}
+\newcommand{\wb}{\mathbf{w}}
+\newcommand{\xb}{\mathbf{x}}
+\newcommand{\yb}{\mathbf{y}}
+\newcommand{\zb}{\mathbf{z}}
+
+% denote vectors
+\newcommand{\ba}{\bm{a}}
+\newcommand{\bb}{\bm{b}}
+\newcommand{\bc}{\bm{c}}
+\newcommand{\bd}{\bm{d}}
+\newcommand{\be}{\bm{e}}
+\newcommand{\bbf}{\bm{f}}
+\newcommand{\bg}{\bm{g}}
+\newcommand{\bh}{\bm{h}}
+\newcommand{\bi}{\bmf{i}}
+\newcommand{\bj}{\bm{j}}
+\newcommand{\bk}{\bm{k}}
+\newcommand{\bl}{\bm{l}}
+\newcommand{\bbm}{\bm{m}}
+\newcommand{\bn}{\bm{n}}
+\newcommand{\bo}{\bm{o}}
+\newcommand{\bp}{\bm{p}}
+\newcommand{\bq}{\bm{q}}
+\newcommand{\br}{\bm{r}}
+\newcommand{\bs}{\bm{s}}
+\newcommand{\bt}{\bm{t}}
+\newcommand{\bu}{\bm{u}}
+\newcommand{\bv}{\bm{v}}
+\newcommand{\bw}{\bm{w}}
+\newcommand{\bx}{\bm{x}}
+\newcommand{\by}{\bm{y}}
+\newcommand{\bz}{\bm{z}}
+
+% denote random matrices
+\newcommand{\Ab}{\mathbf{A}}
+\newcommand{\Bb}{\mathbf{B}}
+\newcommand{\Cb}{\mathbf{C}}
+\newcommand{\Db}{\mathbf{D}}
+\newcommand{\Eb}{\mathbf{E}}
+\newcommand{\Fb}{\mathbf{F}}
+\newcommand{\Gb}{\mathbf{G}}
+\newcommand{\Hb}{\mathbf{H}}
+\newcommand{\Ib}{\mathbf{I}}
+\newcommand{\Jb}{\mathbf{J}}
+\newcommand{\Kb}{\mathbf{K}}
+\newcommand{\Lb}{\mathbf{L}}
+\newcommand{\Mb}{\mathbf{M}}
+\newcommand{\Nb}{\mathbf{N}}
+\newcommand{\Ob}{\mathbf{O}}
+\newcommand{\Pb}{\mathbf{P}}
+\newcommand{\Qb}{\mathbf{Q}}
+\newcommand{\Rb}{\mathbf{R}}
+\newcommand{\Sbb}{\mathbf{S}}
+\newcommand{\Tb}{\mathbf{T}}
+\newcommand{\Ub}{\mathbf{U}}
+\newcommand{\Vb}{\mathbf{V}}
+\newcommand{\Wb}{\mathbf{W}}
+\newcommand{\Xb}{\mathbf{X}}
+\newcommand{\Yb}{\mathbf{Y}}
+\newcommand{\Zb}{\mathbf{Z}}
+
+% denote random vectors
+\newcommand{\bA}{\bm{A}}
+\newcommand{\bB}{\bm{B}}
+\newcommand{\bC}{\bm{C}}
+\newcommand{\bD}{\bm{D}}
+\newcommand{\bE}{\bm{E}}
+\newcommand{\bF}{\bm{F}}
+\newcommand{\bG}{\bm{G}}
+\newcommand{\bH}{\bm{H}}
+\newcommand{\bI}{\bm{I}}
+\newcommand{\bJ}{\bm{J}}
+\newcommand{\bK}{\bm{K}}
+\newcommand{\bL}{\bm{L}}
+\newcommand{\bM}{\bm{M}}
+\newcommand{\bN}{\bm{N}}
+\newcommand{\bO}{\bm{O}}
+\newcommand{\bP}{\bm{P}}
+\newcommand{\bQ}{\bm{Q}}
+\newcommand{\bR}{\bm{R}}
+\newcommand{\bS}{\bm{S}}
+\newcommand{\bT}{\bm{T}}
+\newcommand{\bU}{\bm{U}}
+\newcommand{\bV}{\bm{V}}
+\newcommand{\bW}{\bm{W}}
+\newcommand{\bX}{\bm{X}}
+\newcommand{\bY}{\bm{Y}}
+\newcommand{\bZ}{\bm{Z}}
+
+% denote vectors
+\newcommand{\bbeta}{\bm{\beta}}
+\newcommand{\balpha}{\bm{\alpha}}
+\newcommand{\bgamma}{\bm{\gamma}}
+\newcommand{\blambda}{\bm{\lambda}}
+\newcommand{\bomega}{\bm{\omega}}
+\newcommand{\bmu}{\bm{\mu}}
+\newcommand{\bepsilon}{\bm{\epsilon}}
+\newcommand{\btheta}{\bm{\theta}}
+\newcommand{\bxi}{\bm{\xi}}
+\newcommand{\bpi}{\bm{\pi}}
+\newcommand{\bphi}{\bm{\phi}}
+
+% denote matrices
+\newcommand{\bGamma}{\bm{\Gamma}}
+\newcommand{\bLambda}{\bm{\Lambda}}
+\newcommand{\bSigma}{\bm{\Sigma}}
+
+% others
+\newcommand{\bcE}{\bm{\mathcal{E}}}	% filtration
+\newcommand{\bcF}{\bm{\mathcal{F}}}	% filtration
+\newcommand{\bcG}{\bm{\mathcal{G}}}	% filtration
+
+
+%----- double fonts -----%
+
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbE}{\mathbb{E}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+
+
+%----- script fonts -----%
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+%----- special operators -----%
+
+\newcommand{\argmin}{\mathop{\mathrm{argmin}}}
+\newcommand{\argmax}{\mathop{\mathrm{argmax}}}
+
+\newcommand{\bvar}{\textbf{Var}}
+\newcommand{\bcov}{\textbf{Cov}}
+\newcommand{\brank}{\textbf{rank}}
+\newcommand{\bsign}{\textbf{sign}}
+\newcommand{\bdiag}{\textbf{diag}}	% diagonal
+\newcommand{\bdim}{\textbf{dim}}	% dimension
+\newcommand{\btr}{\textbf{tr}}	    % trace
+\newcommand{\bspan}{\textbf{span}}	% linear span
+\newcommand{\bsupp}{\textbf{supp}}	% support
+\newcommand{\bepi}{\textbf{epi}}	% epigraph
+
+\newcommand{\perm}{\textbf{Perm}}	% permutation
+\newcommand{\bias}{\textbf{Bias}}	% bias
+\newcommand{\mse}{\textbf{MSE}}		% mse
+
+\newcommand{\wass}{\textbf{Wass}}	% Wasserstein Distance
+\newcommand{\ks}{\textbf{KS}}		% Kolomogov-Smirnov Distance
+
+\newcommand{\brem}{\textbf{Rem}}		% remainders
+
+
+\newcommand{\bzero}{{\mathbf{0}}}	% zero vector
+\newcommand{\bone}{{\mathbf{1}}}	% all-one vector
+\newcommand{\bbone}{{\mathbbm{1}}}	% indicator
+
+\newcommand{\rmd}{\mathrm{d}}		% differentiation
+
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}	% independence
+
+%----- distribution name -----%
+
+\newcommand{\Exp}{\textbf{Exp}}
+\newcommand{\Pois}{\textbf{Pois}}
+\newcommand{\Gumb}{\textbf{Gumbel}}
+\newcommand{\Bern}{\textbf{Bernoulli}}
+\newcommand{\Bin}{\textbf{Bin}}
+\newcommand{\NBin}{\textbf{NBin}}
+\newcommand{\Multi}{\textbf{Multi}}
+\newcommand{\Geo}{\textbf{Geo}}
+\newcommand{\Hyper}{\textbf{Hyper}}
+\newcommand{\SBM}{\textbf{SBM}}
+\newcommand{\PoisProc}{\textbf{PoisProc}}
+
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+	\posttitle{
+		\begin{center}\large#1\end{center}
+	}
+}
+
+\setlength{\droptitle}{-2em}
+\title{\textbf {STOR 565 Spring 2018 Homework 3}}
+\pretitle{\vspace{\droptitle}\centering\huge}
+\posttitle{\par}
+\subtitle{\textbf{Due on 02/09/2018 in Class}}
+\author{}
+\preauthor{}\postauthor{}
+\date{}
+\predate{}\postdate{}
+
+\begin{document}
+\pagenumbering{arabic}
+\maketitle
+
+% \pdfbookmark[<level>]{<title>}{<dest>}
+%\pdfbookmark[section]{\contentsname}{toc}
+
+\begin{rmk}
+	This homework aims to help you further understand the model selection techniques in linear model. Credits for \textbf{Theoretical Part} and \textbf{Computational Part} are in total 100 pt. For \textbf{Theoretical Part}, you can summit a hand-writing homework.
+\end{rmk}
+
+\section*{Theoretical Part}
+{\bf Note: Problem 3 (d) is optional for extra credits. At most 100 pt can be earned in Hw3.}
+
+\begin{itemize}
+	\item [1.] (Textbook 6.3 + 6.4, \textit{20 pt})	Consider the ridge regression 
+	\begin{align*}
+	\min_{\bbeta}  \|\bY - \Xb\bbeta\|_{2}^{2} + \lambda \sum_{k=1}^{p}\beta_{k}^{2} \tag{ridge regression}
+	\end{align*}
+	with tuning parameter $ \lambda \ge 0 $ and the constrained version of LASSO
+	\begin{align*}
+	\begin{array}{rl}
+	\min\limits_{\bbeta} & \|\bY - \Xb\bbeta\|_{2}^{2}\\
+	\rm{s.t.} & \sum\limits_{k=1}^{p}|\beta_{k}| \le s
+	\end{array}
+	\tag{LASSO}
+	\end{align*}
+	with tuning parameter $ s \ge 0 $. As $ \lambda $ and $ s $ increases from $ 0 $ respectively, indicate which of (\romannum{1}) to (\romannum{5}) is correct for: (a) training RSS, (b) test RSS, (c) variance, and (d) (squared) bias. Justify your answer.
+	\begin{itemize}
+		\item [(\romannum{1})] Increase initially, and then eventually start decreasing in an inverted U shape.
+		
+		\item [(\romannum{2})] Decrease initially, and then eventually start increasing in a U shape.
+		
+		\item [(\romannum{3})] Steadily increase.
+		
+		\item [(\romannum{4})] Steadily decrease.
+		
+		\item [(\romannum{5})] Remain constant.
+	\end{itemize}
+
+	\item [2.] (\textit{25 pt}) This problem illustrates the estimator property in the shrinkage methods. Let $ Y $ be a single observation. Consider $ Y $ regressed on an intercept
+	\[ Y = 1 \cdot \beta + \epsilon. \]
+	\begin{itemize}
+		\item [(a)] Using the formulation as shown in class, write down the optimization problem of general linear model, ridge regression and LASSO in estimating $ \beta $ respectively.
+		
+		\item [(b)] For fixed tuning parameter $ \lambda $, solve for $ \hat{\beta} $ (general linear model), $ \hat{\beta}_{\lambda}^{R} $ (ridge regression) and $ \hat{\beta}_{\lambda}^{L} $ (LASSO) respectively.
+		\begin{hint}
+			For the LASSO problem, show that the objective function is convex even though not everywhere differentiable, hence any local minima is also a global minima. Argue that it suffices to solve for $ \beta \ge 0 $ and $ \beta < 0 $ respectively. Carefully discuss all possible situations (where the minima locates and what's the optimal value in both cases), and then pick the better one as $ \hat{\beta}_{\lambda}^{L} $.
+		\end{hint}
+	
+		\item [(c)] Represent $ \hat{\beta}^{R}_{\lambda} $ and $ \hat{\beta}^{L}_{\lambda} $ by $ \hat{\beta}$ and create corresponding plots respectively with $ \lambda = 1,5,10 $. What can you tell?
+	\end{itemize}
+
+	\item [3.] (Textbook 6.5, \textit{5 pt + 10 optional pt}) It is well-known that ridge regression tends to give similar coefficient values to correlated/collinear variables, whereas the LASSO may give quite different coefficient values to correlated/collinear variables. We will now explore this property in a very simple setting. Suppose that we have two observations $ (X_{1},Y_{1}) $ and $ (X_{2},Y_{2}) $, where $ X_{1} \ne 0 $, $ X_{1} + X_{2} = Y_{1} + Y_{2} = 0 $. Consider the linear model $ Y_{i} $ artificially regressed on $ (X_{i},X_{i}) $ without intercept:
+	\[ \begin{cases}
+	Y_{1} = X_{1}\beta_{1} + X_{1}\beta_{2} + \epsilon_{1}\\
+	Y_{2} = X_{2}\beta_{1} + X_{2}\beta_{2} + \epsilon_{2}
+	\end{cases} \]
+	\begin{itemize}
+		\item [(a)] Write out the ridge regression optimization problem in this setting. 
+		
+		\item [(b)] Argue that the ridge coefficient estimates satisfy $ \hat{\beta}^{R}_{\lambda,1} = \hat{\beta}^{R}_{\lambda,2} $.
+		
+		\item [(c)] Write out the LASSO optimization problem in this setting.
+		
+		\item [(d)] (\textit{Optional, 10 pt}) Argue that in this setting, the LASSO coefficients $ \hat{\beta}_{\lambda,1}^{L} $ and $ \hat{\beta}^{L}_{\lambda,2} $ are not unique. Describe these solutions.
+		\begin{hint}
+			Starting with an optimal coefficients $ (\hat{\beta}_{\lambda,1}^{L},\hat{\beta}_{\lambda,2}^{L}) $, indicate that you can find another one. Use the relationship of a usual LASSO problem and its constrained version. Investigate into the relationship between the contour of the objective function and the constraint set in the constrained version.
+		\end{hint}
+	\end{itemize}
+
+\end{itemize}
+	
+\end{document}

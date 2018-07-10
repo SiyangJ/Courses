@@ -1,0 +1,30 @@
+<TeXmacs|1.99.4>
+
+<style|generic>
+
+<\body>
+  <\enumerate-numeric>
+    <item>abcef
+  </enumerate-numeric>
+
+  <\enumerate-numeric>
+    <item>Derivative operator is linear shift-invariat and therefore has a
+    corresponding\ 
+
+    <\enumerate-alpha>
+      <item>
+    </enumerate-alpha>
+  </enumerate-numeric>
+
+  <\enumerate-numeric>
+    <item>f, what do you mean by \Psmall\Q?
+
+    <item>definition of a \Peigenvalue matrix\Q?
+  </enumerate-numeric>
+</body>
+
+<\initial>
+  <\collection>
+    <associate|page-type|letter>
+  </collection>
+</initial>

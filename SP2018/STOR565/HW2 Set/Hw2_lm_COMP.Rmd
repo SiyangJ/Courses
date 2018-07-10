@@ -1,0 +1,229 @@
+---
+title: "STOR 565 Spring 2018 Homework 2"
+author: "YOUR NAME"
+output:
+  pdf_document: default
+  html_document: default
+subtitle: \textbf{Due on 01/31/2018 in Class}
+header-includes: \usepackage{amsgen,amsmath,amstext,amsbsy,amsopn,amssymb,mathabx,amsthm,bm,bbm}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+## install.packages("ISLR")   # if you don't have this package, run it
+library("ISLR")
+library(MASS)
+```
+\theoremstyle{definition}
+\newtheorem*{hint}{Hint}
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+
+*Remark.* This homework aims to help you go through the necessary preliminary from linear regression. Credits for **Theoretical Part** and **Computational Part** are in total 100 pt. For **Computational Part**, please complete your answer in the **RMarkdown** file and summit your printed PDF homework created by it.
+
+## Computational Part
+
+1. (*35 pt*) Consider the dataset "Boston" in predicting the crime rate at Boston with associated covariates.
+```{r Boston}
+head(Boston)
+```
+Suppose you would like to predict the crime rate with explantory variables
+
+* `medv`  - Median value of owner-occupied homes
+* `dis`   - Weighted mean of distances to employement centers
+* `indus` - Proportion of non-retail business acres
+
+Run with the linear model
+```{r lm}
+mod1 <- lm(crim ~ medv + dis + indus, data = Boston)
+summary(mod1)
+```
+Answer the following questions.
+
+(i) What do the following quantities that appear in the above output mean in the linear model? Provide a breif description.
+    + `t value` and `Pr(>|t|)` of `medv`
+    
+    **Answer:** YOUR ANSWER.
+
+    ***
+    + `Multiple R-squared`
+    
+    **Answer:** YOUR ANSWER.
+    
+    ***
+    + `F-statistic`, `DF` and corresponding `p-value`
+
+    **Answer:** YOUR ANSWER.
+    
+    ***
+    
+
+(ii) Are the following sentences True of False? Briefly justify your answer.
+    + `indus` is not a significant predictor of crim, and we can drop this from the model.
+    
+    **Answer:** YOUR ANSWER.
+    
+    ***
+    + `Multiple R-squared` is preferred to `Adjusted R-squared` as it takes into account all the variables.
+    
+    **Answer:** YOUR ANSWER.
+
+    ***    
+    + `medv` has a negative effect on the response.
+    
+    **Answer:** YOUR ANSWER.
+    
+    ***
+    + Our model residuals appear to be normally distributed.
+    
+    \begin{hint}
+      You need to access to the model residuals in justifying the last sentence. The following commands might help.
+    \end{hint}
+    ```{r, eval=FALSE}
+    # Obtain the residuals
+    res1 <- residuals(mod1)
+    
+    # Normal QQ-plot of residuals
+    plot(mod1, 2)
+    
+    # Conduct a Normality test via Shapiro-Wilk and Kolmogorov-Smirnov test
+    shapiro.test(res1)
+    ks.test(res1, "pnorm")
+    ```
+
+    **Answer:** YOUR ANSWER.
+
+    ***
+    
+2. (*35 pt*, Textbook Exercises 3.10) This question should be answered using the `Carseats` data set.
+
+```{r}
+head(Carseats)
+```
+
+(a) Fit a multiple regression model to predict `Sales` using `Price`, `Urban`, and `US`.
+
+**Answer:** YOUR ANSWER.
+
+```{r}
+mod2 <- lm(Sales ~ Price+Urban+US,data=Carseats)
+summary(mod2)
+```
+
+***
+
+(b) Provide an interpretation of each coefficient in the model. Be careful—some of the variables in the model are qualitative!
+
+**Answer:** YOUR ANSWER.
+
+***
+
+(c) Write out the model in equation form, being careful to handle the qualitative variables properly.
+
+**Answer:** YOUR ANSWER.
+
+***
+
+(d) For which of the predictors can you reject the null hypothesis $H_0 : \beta_j = 0$?
+
+**Answer:** YOUR ANSWER.
+
+***
+
+(e) On the basis of your response to the previous question, fit a smaller model that only uses the predictors for which there is evidence of association with the outcome.
+
+**Answer:** YOUR ANSWER.
+```{r}
+mod2.2 = lm(formula=Sales~Price+US,data=Carseats)
+summary(mod2.2)
+```
+***
+
+(f) How well do the models in (a) and (e) fit the data?
+
+**Answer:** YOUR ANSWER.
+
+***
+
+(g) Using the model from (e), obtain 95% confidence intervals for the coefficient(s).
+
+**Answer:** YOUR ANSWER.
+
+***
+
+(h) Using the leave-one-out cross-validation and 5-fold cross-validation techniques to compare the performance of models in (a) and (e). What can you tell from (f) and (h)?
+
+**Hint.** Functions `update` (with option `subset`) and `predict`.
+
+**Answer:** YOUR ANSWER.
+```{r}
+## LOOCV
+n = nrow(Carseats);
+err_2.min = Inf;
+err_2.2.min = Inf;
+mod2.min = mod2;
+mod2.2.min = mod2.2;
+for(i in 1:n)
+{
+  update(mod2,data=Carseats[-i,]);
+  err_2 = (predict(mod2,Carseats[i,])-Carseats[i,1])^2;
+  if (err_2 < err_2.min)
+  {
+    err_2.min = err_2;
+    mod2.min = mod2;
+  }
+  update(mod2.2,data=Carseats[-i,]);
+  err_2.2 = (predict(mod2.2,Carseats[i,])-Carseats[i,1])^2;
+  if (err_2.2 < err_2.2.min)
+  {
+    err_2.2.min = err_2.2;
+    mod2.2.min = mod2.2;
+  }
+}
+mse_2 = mean((Carseats[,1]-predict(mod2.min))^2);
+mse_2.2 = mean((Carseats[,1]-predict(mod2.2.min))^2);
+print(mse_2)
+print(mse_2.2)
+update(mod2,data=Carseats);
+update(mod2.2,data=Carseats);
+```
+```{r}
+## 5-FCV
+n = nrow(Carseats);
+err_2.min = Inf;
+err_2.2.min = Inf;
+mod2.min = mod2;
+mod2.2.min = mod2.2;
+for(i in seq(from=1,to=n-80,by=80))
+{
+  update(mod2,data=Carseats[-(i:i+80),]);
+  err_2 = mean((predict(mod2,Carseats[i:i+80,])-Carseats[i:i+80,1])^2);
+  if (err_2 < err_2.min)
+  {
+    err_2.min = err_2;
+    mod2.min = mod2;
+  }
+  update(mod2.2,data=Carseats[-(i:i+80),]);
+  err_2.2 = (predict(mod2.2,Carseats[i:i+80,])-Carseats[i:i+80,1])^2;
+  if (err_2.2 < err_2.2.min)
+  {
+    err_2.2.min = err_2.2;
+    mod2.2.min = mod2.2;
+  }
+}
+mse_2 = mean((Carseats[,1]-predict(mod2.min))^2);
+mse_2.2 = mean((Carseats[,1]-predict(mod2.2.min))^2);
+print(mse_2)
+print(mse_2.2)
+update(mod2,data=Carseats);
+update(mod2.2,data=Carseats);
+```
+***
+```{r}
+X <- rnorm(100)
+epsilon <- rnorm(100)
+beta <- c(2,2,-3,0.3)
+Y <- beta[1]+beta[2]*X+beta[3]*X^2+beta[4]*X^3+epsilon
+print(Y)
+```

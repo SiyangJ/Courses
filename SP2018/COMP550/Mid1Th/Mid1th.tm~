@@ -1,0 +1,316 @@
+<TeXmacs|1.99.4>
+
+<style|generic>
+
+<\body>
+  COMP550 Midterm1 Take Home Part
+
+  Siyang Jing
+
+  730042022
+
+  \;
+
+  Definitions:
+
+  <\itemize-dot>
+    <item><math|n\<in\>\<bbb-N\><rsup|+>>, the numer of potions;
+
+    <item><math|m\<in\>\<bbb-N\>>, the total stench, <math|m> is initially 0;\ 
+
+    <item>sequence <math|v<around*|[|1,2,\<ldots\>,n|]>>, the (initial)
+    stench factors, where <math|\<forall\>i\<in\><around*|{|1,2,\<ldots\>,n|}>,v<around*|[|i|]>\<in\>\<bbb-Z\><rsub|50><around*|(|i.e.<around*|{|0,1,\<ldots\>,49|}>|)>>;
+
+    <item>function <math|<around*|(|,|)>:\<bbb-Z\><rsub|50>\<times\>\<bbb-Z\><rsub|50>\<rightarrow\>\<bbb-Z\><rsub|50>>,
+    the action of pouring potion, defined as <math|<around*|(|a,b|)>=a+b>,
+    here <math|+> is the addition in <math|\<bbb-Z\><rsub|50>>;
+
+    <item>sequence of evaluation should be done sequentially, i.e. we can
+    only pour potions from adjacent one, i.e. <math|<around*|(|a,b|)>> should
+    only be done if <math|a> and <math|b> are numbers (in other words
+    expressions that have already been evaluated), e.g.
+    <math|<around*|(|1,<around*|(|2,3|)>|)>> should be done in the order of
+    <math|<around*|(|2,3|)>> and then <math|<around*|(|1,5|)>>;
+
+    <item>each evaluation <math|<around*|(|a,b|)>> increments <math|m> by
+    <math|a\<times\>b>, here <math|\<times\>> is the regular multiplication,
+    i.e. the effect of pouring potion on the total stench;
+
+    <item>sequence of function evaluations
+    <math|F<rsub|\<sigma\>><around*|(|i,k|)>> that sequentially evaluates
+    <math|<around*|(|,|)>> on the elements of sequence
+    <math|v<around*|[|i,\<ldots\>,k|]>> in a certain order, i.e. the order of
+    pouring potion, where <math|\<sigma\>\<in\>\<frak-F\><around*|(|i,k|)>>
+    is some index denoting one possible way of evaluating
+    <math|v<around*|[|i,\<ldots\>,k|]>>, and
+    <math|\<frak-F\><around*|(|i,k|)>> is the index set for
+    <math|F<rsub|\<sigma\>><around*|(|i,k|)>>, for example
+    <math|F<rsub|\<mu\>><around*|(|1,3|)>=<around*|(|1,<around*|(|2,3|)>|)>>,
+    and <math|F<rsub|\<nu\>><around*|(|1,3|)>=<around*|(|<around*|(|1,2|)>,3|)>>,
+    and etc;
+
+    <item>we notice that the the value obtained from the evaluation
+    <math|F<rsub|\<sigma\>><around*|(|i,k|)>> does not depend on
+    <math|\<sigma\>>, therefore we define <math|F<around*|(|i,k|)>=>value of
+    <math|F<rsub|\<sigma\>><around*|(|i,k|)>=<big|sum><rsup|l=k><rsub|l=i>v<around*|[|l|]>>;
+
+    <math|F<around*|(|i,i|)>\<assign\>v<around*|[|i|]>>, which is a simple
+    value, and no evaluation is needed;
+
+    <item>the minimum total stench:
+
+    <math|<wide|m|^>=<below|min|\<sigma\>\<in\>\<frak-F\><around*|(|1,n|)>>>{<math|m>
+    after sequence of evaluations <math|F<rsub|\<sigma\>><around*|(|1,n|)>>};
+
+    <item>the minimum total stench after pouring potions <math|i> to
+    <math|k>:
+
+    <math|<wide|m|^><around*|(|i,k|)>=<below|min|\<sigma\>\<in\>\<frak-F\><around*|(|i,k|)>>>{<math|m>
+    created by <math|F<rsub|\<sigma\>><around*|(|i,k|)>>}, note that
+    <math|><math|<wide|m|^><around*|(|1,n|)>=<wide|m|^>>;
+
+    <math|<wide|m|^><around*|(|i,i|)>:=0>;
+
+    <item>the order of pouring potions <math|i> to <math|k>, that creates the
+    minimum stench:
+
+    <math|<wide|F|^><around*|(|i,k|)>=<below|argmin|\<sigma\>\<in\>\<frak-F\><around*|(|i,k|)>>>{<math|m>
+    created by <math|F<rsub|\<sigma\>><around*|(|i,k|)>>}
+  </itemize-dot>
+
+  \;
+
+  Statement of the problem:
+
+  The aim is to develop an algorithm that,\ 
+
+  given <math|v<around*|[|1,\<ldots\>,n|]>>, finds
+  <math|<wide|m|^>=<below|min|\<sigma\>\<in\>\<frak-F\><around*|(|1,n|)>>>{<math|m>
+  after sequence of evaluations <math|F<rsub|\<sigma\>><around*|(|1,n|)>>},\ 
+
+  i.e. finds the order of pouring that creates the minimum total stench.
+
+  \;
+
+  Statement of the algorithm:
+
+  First we notice that, there is a one-one correspondence between\ 
+
+  <math|><math|\<sigma\>\<in\>\<frak-F\><around*|(|i,k|)>> and
+  <math|<around*|(|j\<geqslant\>i,\<mu\>\<in\>\<frak-F\><around*|(|i,j|)>,\<nu\>\<in\>\<frak-F\><around*|(|j+1,k|)>|)>>,
+  and, in particular,
+
+  <math|\<forall\>k\<gtr\>i+1,\<sigma\>\<in\>\<frak-F\><around*|(|i,k|)>,\<exists\>!j\<geqslant\>i,\<mu\>\<in\>\<frak-F\><around*|(|i,j|)>,\<nu\>\<in\>\<frak-F\><around*|(|j+1,k|)>,s.t.F<rsub|\<sigma\>><around*|(|i,k|)>=<around*|(|F<rsub|\<mu\>><around*|(|i,j|)>,F<rsub|\<nu\>><around*|(|j+1,k|)>|)>>,
+
+  and therefore we have:
+
+  <math|<wide|m|^><around*|(|i,k|)>=<below|min|\<sigma\>\<in\>\<frak-F\><around*|(|i,k|)>>>{<math|m>
+  created by <math|F<rsub|\<sigma\>><around*|(|i,k|)>>}
+
+  <math|=<below|min|j,\<mu\>,\<nu\>>>{<math|m> created by
+  <math|<around*|(|F<rsub|\<mu\>><around*|(|i,j|)>,F<rsub|\<nu\>><around*|(|j+1,k|)>|)>>}
+
+  =<math|<below|min|j,\<mu\>,\<nu\>>>{<math|m> created by
+  <math|F<rsub|\<mu\>><around*|(|i,j|)>> + <math|m> created by
+  <math|F<rsub|\<nu\>><around*|(|j+1,k|)>> +
+  <math|F<around*|(|i,j|)>\<times\>F<around*|(|j+1,k|)>>}
+
+  =<math|<below|min|j>>{<math|<below|min|\<mu\>,\<nu\>>>{<math|m> created by
+  <math|F<rsub|\<mu\>><around*|(|i,j|)>> + <math|m> created by
+  <math|F<rsub|\<nu\>><around*|(|j+1,k|)>> +
+  <math|F<around*|(|i,j|)>\<times\>F<around*|(|j+1,k|)>>}}
+
+  =<math|<below|min|j>>{<math|<below|min|\<mu\>>>{<math|m> created by
+  <math|F<rsub|\<mu\>><around*|(|i,j|)>>} +
+  <math|<below|min|\<nu\>>>{<math|m> created by
+  <math|F<rsub|\<nu\>><around*|(|j+1,k|)>>} +
+  <math|F<around*|(|i,j|)>\<times\>F<around*|(|j+1,k|)>>}
+
+  =<math|<below|min|j>>{<math|<wide|m|^><around*|(|i,j|)>> +
+  <math|<wide|m|^><around*|(|j+1,k|)>> + <math|F<around*|(|i,j|)>\<times\>F<around*|(|j+1,k|)>>}
+
+  which is the optimal substructure of the problem.
+
+  To develop an algorithm from this optimal substructure, we either
+
+  <\itemize-dot>
+    <item>first recursively call the function to compute
+    <math|<wide|m|^><around*|(|i,j|)>> and
+    <math|<wide|m|^><around*|(|j+1,k|)>>, and then iterate over <math|j> to
+    find <math|<wide|m|^><around*|(|i,k|)>>, which describes a top-down
+    recursive algorithm,
+
+    <item>or we can first compute all the <math|<wide|m|^><around*|(|i,i|)>>,
+    then <math|><math|<wide|m|^><around*|(|i,i+1|)>>, and then
+    <math|<wide|m|^><around*|(|i,i+2|)>>, till
+    <math|<wide|m|^><around*|(|1,n|)>> to get the desired solution, which
+    describes a bottom-up algorithm.
+  </itemize-dot>
+
+  Either way, we need to memoize/store the values of
+  <math|<wide|m|^><around*|(|i,j|)>> that have been calculated to avoid
+  repetitive calculation of the same value, and we also need calculate and
+  store the values of <math|F<around*|(|i,j|)>> beforehand to avoid
+  repetition.
+
+  The time cost for bottom-up solution is
+  <math|\<Theta\><around*|(|n<rsup|3>|)>>, and the space cost is
+  <math|\<Theta\><around*|(|n<rsup|2>|)>>, there is no worst case, best case,
+  or average case for the algorithm, since in any situation, we calculate
+  everything.
+
+  \;
+
+  Below is the pseudo code for the bottom-up algorithm:
+
+  The input <math|v> is a sequnce (1D array), which stores the sequence
+  <math|v> described above.
+
+  The <math|m> 2D array stores <math|<wide|m|^><around*|(|i,j|)>> described
+  above in <math|m<around*|[|i,j|]>>, and <math|m<around*|[|i,i|]>=0>.
+
+  The <math|f> 2D array stores the value of the function evaluation
+  <math|F<around*|(|i,j|)>> at <math|f<around*|[|i,j|]>>, and
+  <math|f<around*|[|i,i|]>=v<around*|[|i|]>>.
+
+  The output is <math|m<around*|[|1,n|]>=<wide|m|^><around*|(|1,n|)>=<wide|m|^>>,
+  the minimum total stench.
+
+  Algorithm Potion-Adding-Order(<math|v>)
+
+  <\indent>
+    <math|n=v>.length
+
+    let <math|m<around*|[|1\<ldots\>n,1\<ldots\>n|]>> and
+    <math|f<around*|[|1\<ldots\>n,1\<ldots\>n|]>> be new tables
+
+    for <math|i=1> to <math|n>
+
+    <\indent>
+      <math|m<around*|[|i,i|]>=0>
+
+      <math|f<around*|[|i,i|]>=v<around*|[|i|]>>
+
+      for <math|j=i+1> to <math|n>
+
+      <\indent>
+        <math|f<around*|[|i,j|]>=f<around*|[|i,j-1|]>+v<around*|[|j|]>> mod
+        <math|50>
+      </indent>
+
+      end
+    </indent>
+
+    end
+
+    for <math|l=2> to <math|n>
+
+    <\indent>
+      for <math|i=1> to <math|n-l+1>
+
+      <\indent>
+        <math|j=i+l-1>
+
+        <\math>
+          m<around*|[|i,j|]>=\<infty\>
+        </math>
+
+        for <math|k=i> to <math|j-1>
+
+        <\indent>
+          <math|q=m<around*|[|i,k|]>+m<around*|[|k+1,j|]>+f<around*|[|i,k|]>\<times\>f<around*|[|k+1,j|]>>
+
+          if <math|q\<less\>m<around*|[|i,j|]>>
+
+          <\indent>
+            <math|m<around*|[|i,j|]>=q>
+          </indent>
+
+          end
+        </indent>
+
+        end
+      </indent>
+
+      end
+    </indent>
+
+    end
+
+    return <math|m<around*|[|1,n|]>>
+  </indent>
+
+  \;
+
+  Argument for Optimality (for the bottom up solution):
+
+  First, I argue that no matter what method is employed, we need to find
+  <math|<wide|m|^><around*|(|i,k|)>> for every <math|i,k>.
+
+  Suppose we did not find <math|<wide|m|^><around*|(|i,k|)>>, i.e. for
+  <math|><math|\<sigma\>\<in\>\<frak-F\><around*|(|i,k|)>>, we don't know
+  which <math|\<sigma\>> corresponds to the
+  <math|F<rsub|\<sigma\>><around*|(|i,k|)>> that produces
+  <math|<wide|m|^><around*|(|i,k|)>>.\ 
+
+  Then we don't know <math|<below|min|\<sigma\>>>{<math|<wide|m|^><around*|(|1,i-1|)>>
+  + <math|m> created by <math|F<rsub|\<sigma\>><around*|(|i,k|)>> +
+  <math|F<around*|(|1,i-1|)>\<times\>F<around*|(|i,k|)>>},\ 
+
+  which equals <math|<below|min|\<mu\>,\<nu\>>>{<math|><math|m> created by
+  <math|F<rsub|\<mu\>><around*|(|1,i-1|)>>+ <math|m> created by
+  <math|F<rsub|\<nu\>><around*|(|i,k|)>> +
+  <math|F<around*|(|1,i-1|)>\<times\>F<around*|(|i,k|)>>}.\ 
+
+  Then we don't know <math|<below|min|j>>{<math|<below|min|\<mu\>,\<nu\>>>{<math|m>
+  created by <math|F<rsub|\<mu\>><around*|(|1,j-1|)>> + <math|m> created by
+  <math|F<rsub|\<nu\>><around*|(|j,k|)>> +
+  <math|F<around*|(|1,j-1|)>\<times\>F<around*|(|j,k|)>>}},\ 
+
+  which equals <math|<below|min|\<sigma\>\<in\>\<frak-F\><around*|(|i,k|)>>>{<math|m>
+  created by <math|F<rsub|\<sigma\>><around*|(|1,k|)>>}, which is simply
+  <math|<wide|m|^><around*|(|1,k|)>>.\ 
+
+  By the same logic, we reason that we don't know
+  <math|<wide|m|^><around*|(|1,n|)>>, i.e. even if we get some value, correct
+  or not, we don't know whether it is the minimum, whether it is the answer.
+
+  Second, I argue that in finding each \ <math|<wide|m|^><around*|(|i,k|)>>,
+  we need to iterate through all the values <math|j> between <math|i> and
+  <math|k> to calculate <math|<wide|m|^><around*|(|i,j|)>> +
+  <math|<wide|m|^><around*|(|j+1,k|)>> + <math|F<around*|(|i,j|)>\<times\>F<around*|(|j+1,k|)>>.
+
+  Suppose we did not go through <math|j<rsub|0><rsub|>>, then we don't know
+  <math|<below|min|j>>{<math|<wide|m|^><around*|(|i,j|)>> +
+  <math|<wide|m|^><around*|(|j+1,k|)>> + <math|F<around*|(|i,j|)>\<times\>F<around*|(|j+1,k|)>>},
+  since this <math|j<rsub|0>> we did not go through could be exactly the one
+  that produces the above minimum. Therefore we don't know
+  <math|<wide|m|^><around*|(|i,k|)>>.
+
+  From the argument above, we can see that we need
+  <math|\<Theta\><around*|(|n<rsup|3>|)>> calculations of
+  <math|<wide|m|^><around*|(|i,j|)>> + <math|<wide|m|^><around*|(|j+1,k|)>> +
+  <math|F<around*|(|i,j|)>\<times\>F<around*|(|j+1,k|)>>, for each
+  <math|i\<leqslant\>j\<less\>k>, no matter the form/implementation of the
+  algorithm.
+
+  In our bottom-up solution which also stores all calculated
+  <math|<wide|m|^><around*|(|i,j|)>> and <math|F<around*|(|i,j|)>>, we have
+  constant time cost for calculating <math|<wide|m|^><around*|(|i,j|)>> +
+  <math|<wide|m|^><around*|(|j+1,k|)>> + <math|F<around*|(|i,j|)>\<times\>F<around*|(|j+1,k|)>>.
+  When we need to calculate this expression, since the lag between <math|i>
+  and <math|j>, or <math|j+1> and <math|k>, is less than the lag between
+  <math|i> and <math|k>, we will have already calculated and stored the
+  values of <math|<wide|m|^><around*|(|i,j|)>>,
+  <math|<wide|m|^><around*|(|j+1,k|)>>, <math|F<around*|(|i,j|)>>, and
+  <math|F<around*|(|j+1,k|)>>, and therefore the calculation is constant.
+  Since the calculations are necessarily needed, and the cost for each
+  calculation is optimal (constant), the whole algorithm is optimal.
+</body>
+
+<\initial>
+  <\collection>
+    <associate|font-base-size|10>
+    <associate|page-type|letter>
+  </collection>
+</initial>
