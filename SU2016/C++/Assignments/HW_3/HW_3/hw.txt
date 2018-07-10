@@ -1,0 +1,2 @@
+First of all, it might not compile. In the functions of the template class Multiset, like find, comparing binary operations like “!=“ are used, but they are not defined for the data type, the custom class, URL.
+Even if it compiles, which I do not see but do not exclude such probability, it might succeed to insert the first item in Multiset, since when inserting for the first time the “!=“ operation on URL in find function will not actually be used. But it will never succeed to insert the second time, since that requires comparing between URL objects, which are not defined.

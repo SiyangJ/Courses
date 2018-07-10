@@ -1,0 +1,264 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		14C4E0471D2B5B50007B3C51 /* testStudentMultiset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14C4E03E1D2B5AFC007B3C51 /* testStudentMultiset.cpp */; };
+		14C4E0481D2B5B53007B3C51 /* Multiset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14C4E0361D2B5AFC007B3C51 /* Multiset.cpp */; };
+		14C4E0491D2B5B58007B3C51 /* StudentMultiset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14C4E03A1D2B5AFC007B3C51 /* StudentMultiset.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		14C4E02A1D2B5ADA007B3C51 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		14C4E02C1D2B5ADA007B3C51 /* HW_1_WH */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HW_1_WH; sourceTree = BUILT_PRODUCTS_DIR; };
+		14C4E0361D2B5AFC007B3C51 /* Multiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Multiset.cpp; path = ../../../../../../Downloads/HOMEWORK_1_TEST/Multiset.cpp; sourceTree = "<group>"; };
+		14C4E0371D2B5AFC007B3C51 /* Multiset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Multiset.h; path = ../../../../../../Downloads/HOMEWORK_1_TEST/Multiset.h; sourceTree = "<group>"; };
+		14C4E0381D2B5AFC007B3C51 /* newMultiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = newMultiset.cpp; path = ../../../../../../Downloads/HOMEWORK_1_TEST/newMultiset.cpp; sourceTree = "<group>"; };
+		14C4E0391D2B5AFC007B3C51 /* newMultiset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newMultiset.h; path = ../../../../../../Downloads/HOMEWORK_1_TEST/newMultiset.h; sourceTree = "<group>"; };
+		14C4E03A1D2B5AFC007B3C51 /* StudentMultiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StudentMultiset.cpp; path = ../../../../../../Downloads/HOMEWORK_1_TEST/StudentMultiset.cpp; sourceTree = "<group>"; };
+		14C4E03B1D2B5AFC007B3C51 /* StudentMultiset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StudentMultiset.h; path = ../../../../../../Downloads/HOMEWORK_1_TEST/StudentMultiset.h; sourceTree = "<group>"; };
+		14C4E03C1D2B5AFC007B3C51 /* testMultiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testMultiset.cpp; path = ../../../../../../Downloads/HOMEWORK_1_TEST/testMultiset.cpp; sourceTree = "<group>"; };
+		14C4E03D1D2B5AFC007B3C51 /* testnewMultiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testnewMultiset.cpp; path = ../../../../../../Downloads/HOMEWORK_1_TEST/testnewMultiset.cpp; sourceTree = "<group>"; };
+		14C4E03E1D2B5AFC007B3C51 /* testStudentMultiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testStudentMultiset.cpp; path = ../../../../../../Downloads/HOMEWORK_1_TEST/testStudentMultiset.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		14C4E0291D2B5ADA007B3C51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		14C4E0231D2B5ADA007B3C51 = {
+			isa = PBXGroup;
+			children = (
+				14C4E02E1D2B5ADA007B3C51 /* HW_1_WH */,
+				14C4E02D1D2B5ADA007B3C51 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		14C4E02D1D2B5ADA007B3C51 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				14C4E02C1D2B5ADA007B3C51 /* HW_1_WH */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		14C4E02E1D2B5ADA007B3C51 /* HW_1_WH */ = {
+			isa = PBXGroup;
+			children = (
+				14C4E0361D2B5AFC007B3C51 /* Multiset.cpp */,
+				14C4E0371D2B5AFC007B3C51 /* Multiset.h */,
+				14C4E0381D2B5AFC007B3C51 /* newMultiset.cpp */,
+				14C4E0391D2B5AFC007B3C51 /* newMultiset.h */,
+				14C4E03A1D2B5AFC007B3C51 /* StudentMultiset.cpp */,
+				14C4E03B1D2B5AFC007B3C51 /* StudentMultiset.h */,
+				14C4E03C1D2B5AFC007B3C51 /* testMultiset.cpp */,
+				14C4E03D1D2B5AFC007B3C51 /* testnewMultiset.cpp */,
+				14C4E03E1D2B5AFC007B3C51 /* testStudentMultiset.cpp */,
+			);
+			path = HW_1_WH;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		14C4E02B1D2B5ADA007B3C51 /* HW_1_WH */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14C4E0331D2B5ADA007B3C51 /* Build configuration list for PBXNativeTarget "HW_1_WH" */;
+			buildPhases = (
+				14C4E0281D2B5ADA007B3C51 /* Sources */,
+				14C4E0291D2B5ADA007B3C51 /* Frameworks */,
+				14C4E02A1D2B5ADA007B3C51 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HW_1_WH;
+			productName = HW_1_WH;
+			productReference = 14C4E02C1D2B5ADA007B3C51 /* HW_1_WH */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		14C4E0241D2B5ADA007B3C51 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = UCLA;
+				TargetAttributes = {
+					14C4E02B1D2B5ADA007B3C51 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 14C4E0271D2B5ADA007B3C51 /* Build configuration list for PBXProject "HW_1_WH" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 14C4E0231D2B5ADA007B3C51;
+			productRefGroup = 14C4E02D1D2B5ADA007B3C51 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				14C4E02B1D2B5ADA007B3C51 /* HW_1_WH */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		14C4E0281D2B5ADA007B3C51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14C4E0491D2B5B58007B3C51 /* StudentMultiset.cpp in Sources */,
+				14C4E0481D2B5B53007B3C51 /* Multiset.cpp in Sources */,
+				14C4E0471D2B5B50007B3C51 /* testStudentMultiset.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		14C4E0311D2B5ADA007B3C51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		14C4E0321D2B5ADA007B3C51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		14C4E0341D2B5ADA007B3C51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		14C4E0351D2B5ADA007B3C51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		14C4E0271D2B5ADA007B3C51 /* Build configuration list for PBXProject "HW_1_WH" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14C4E0311D2B5ADA007B3C51 /* Debug */,
+				14C4E0321D2B5ADA007B3C51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14C4E0331D2B5ADA007B3C51 /* Build configuration list for PBXNativeTarget "HW_1_WH" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14C4E0341D2B5ADA007B3C51 /* Debug */,
+				14C4E0351D2B5ADA007B3C51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 14C4E0241D2B5ADA007B3C51 /* Project object */;
+}

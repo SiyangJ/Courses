@@ -1,0 +1,38 @@
+//
+//  PathSum113.hpp
+//  LeetCodeQuestions
+//
+//  Created by apple on 10/9/17.
+//  Copyright © 2017 UNC. All rights reserved.
+//
+
+#ifndef PathSum113_hpp
+#define PathSum113_hpp
+
+#include <stdio.h>
+#include <vector>
+
+using namespace std;
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        
+    }
+    
+    
+    
+};
+
+
+
+#endif /* PathSum113_hpp */

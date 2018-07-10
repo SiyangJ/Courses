@@ -1,0 +1,289 @@
+4.
+a.
+The time complexity is O(N^2), below is an analysis showed as comments.
+
+void uniqueIntersect(const Multiset& m1, const Multiset& m2, Multiset& result)
+{
+    Multiset res;
+    // O(1)
+    for (int k = 0; k != m1.uniqueSize(); k++)
+    // loop N times.
+    // the comparison and uniqueSize() is O(1)
+    {
+	ItemType x;
+	// O(1)
+	m1.get(k, x);
+	// O(kN)
+        if (m2.contains(x))
+        // contains is O(N)
+	    res.insert(x);
+	    // insert is O(N)
+	// above is O(1+kN+N) = O(kN)
+    }
+    // k from 1 to N linearly, this loop is O(N^2)
+    result.swap(res);
+    // swap is O(1)
+}
+// Total is O(1+N^2+1) = O(N^2)
+
+int Multiset::get(int i, ItemType& value) const
+{
+    if (i < 0  ||  i >= m_uniqueSize)
+        return 0;
+    Node* p;
+    // O(1)
+    if (i < m_uniqueSize / 2)  
+    // loop N/2 times
+    {
+        p = m_head->m_next;
+        // O(1)
+        for (int k = 0; k != i; k++)
+        // loop i times
+            p = p->m_next;
+            // O(1)
+        // this loop is O(i)
+    }
+    // this loop is O(iN)
+    else
+    {
+        p = m_head->m_prev;
+        for (int k = m_uniqueSize-1; k != i; k--)
+            p = p->m_prev;
+    }
+    // same, O(iN)
+
+    value = p->m_value;
+    // O(1)
+    return p->m_count;
+    // O(1)
+}
+// Total O(iN)
+
+bool Multiset::contains(const ItemType& value) const
+{
+    return find(value) != m_head;
+    // find is O(N)
+    // comparison is O(1)
+}
+Total O(N)
+
+Multiset::Node* Multiset::find(const ItemType& value) const
+{
+    Node* p;
+    for (p = m_head->m_next; p != m_head && p->m_value != value; p = p->m_next)
+    // loop N times
+    // the comparison is O(1)
+        ;
+    // this loop is O(N)
+    return p;
+}
+// Total O(N)
+
+bool Multiset::insert(const ItemType& value)
+{
+    Node* p = insertHelper(value, 1);
+    // insertHelper is O(N)
+    if (p != nullptr)
+    {
+        p->m_prev = m_head->m_prev;
+        p->m_prev->m_next = p;
+        m_head->m_prev = p;
+        m_uniqueSize++;
+    }
+    // above is O(1)
+    m_size++;
+    return true;
+}
+// Total is O(N)
+
+Multiset::Node* Multiset::insertHelper(const ItemType& value, int nToInsert) const
+{
+    Node* p = find(value);
+    // find is O(N)
+    if (p != m_head)
+    {
+        p->m_count += nToInsert;
+        return nullptr;
+    }
+    // above is O(1)
+    else
+    {
+        p = new Node;
+        p->m_value = value;
+        p->m_count = nToInsert;
+        return p;
+    }
+    // above is O(1)
+}
+// Total is O(N)
+
+void Multiset::swap(Multiset& other)
+{
+    std::swap(m_head, other.m_head);
+    std::swap(m_uniqueSize, other.m_uniqueSize);
+    std::swap(m_size, other.m_size);
+    // above are all O(1)
+}
+// Total is O(1)
+
+b.
+The time complexity is O(NlogN), smaller than a, below is an analysis showed as comments.
+
+void Multiset::uniqueIntersect(const Multiset& m1, const Multiset& m2)
+{
+    vector<ItemType> v;
+    v.reserve(m1.uniqueSize() + m2.uniqueSize());
+    // reserve is O(1)
+    for (Node* p1 = m1.m_head->m_next; p1 != m1.m_head; p1 = p1->m_next)
+    // loop N times
+        v.push_back(p1->m_data);
+        // push_back is O(1)
+    // this loop is O(N)
+    for (Node* p2 = m2.m_head->m_next; p2 != m2.m_head; p2 = p2->m_next)
+        v.push_back(p2->m_data);
+    // same, O(N)
+    sort(v.begin(), v.end());
+    // sort is O(NlogN)
+
+    m_size = 0;
+    Node* p = m_head->next;
+    // O(1)
+    for (size_t k = 1; k < v.size(); k++)
+    // loop 2N times, the comparison is O(1)
+    {
+        if (v[k] == v[k-1])
+        // O(1)
+	{
+	    Node* toUpdate;
+	    if (p != m_head)
+	    {
+		toUpdate = p;
+		p = p->m_next;
+	    }
+	    else
+	    {
+		toUpdate = new Node;
+		toUpdate->m_next = m_head;
+		toUpdate->m_prev = m_head->m_prev;
+		toUpdate->m_prev->m_next = toUpdate;
+		toUpdate->m_next->m_prev = toUpdate;
+	    }
+	    toUpdate->m_value = v[k];
+	    toUpdate->m_count = 1;
+	    m_size++;
+	}
+	// above is O(1)
+    }
+    // this loop is O(N)
+
+    if (p != m_head)
+    // O(1)
+    {
+        m_head->m_prev = p->m_prev;
+        p->m_prev->m_next = m_head;
+        // O(1)
+        do
+        {
+	    Node* toBeDeleted = p;
+	    p = p->m_next;
+	    delete toBeDeleted;
+        } while (p != m_head);
+        // The so called worst case is hard to define here.
+        // But whatever, it can’t be more than O(N), which is “small”.
+    }
+    // above is O(N)
+
+    m_uniqueSize = m_size;
+}
+// Total is O(NlogN+N+N+1+1…) = O(NlogN)
+
+5.
+a.
+For each element int the array, through looping, compare every element after this element with this one, and if condition is met, count increases by one. Below is a simple implementation of this algorithm.
+
+int countInversions(int a[], int n)
+{
+	int count = 0;
+	for (int i=0; i<n; i++)
+	{
+		for (int j=i+1; j<n; j++)
+		{
+			if (a[j]<a[i]) count++;
+		}
+	}
+	return count;
+}
+
+b.
+First repetitively divide the array into half, till unable to do so. Then merge each two sorted short arrays into a sorted large array. When merging, if comparison shows that the element of the first short array is bigger than the element of the second one, count increases by the number of elements that are not yet inserted into the large array, including this element. Below is a simple recursive implementation of this function, with an additional helper function that keeps the original array unsorted.
+
+int mergeSortPlusCounting(int a[], int n)
+{
+    int count=0;
+    if (n<=1)
+        return 0;
+    int n1=n/2, n2=n-n1;
+    count+=mergeSortPlusCounting(a,n1);
+    count+=mergeSortPlusCounting(a+n1,n2);
+    int* res=new int[n];
+    int* sechalf=a+n1;
+    int i=0, j=0, k=0;
+    while (i<n1 || j<n2)
+    {
+        if (i==n1) res[k++]=sechalf[j++];
+        else if (j==n2) res[k++]=a[i++];
+        else if (a[i]<=sechalf[j]) res[k++]=a[i++];
+        else
+        {
+            res[k++]=sechalf[j++];
+            count+=(n1-i);
+        }
+    }
+    for (int i=0; i<n; i++)
+    {
+        a[i]=res[i];
+    }
+    delete [] res;
+    return count;
+}
+int countInversions(int a[], int n)
+{
+    int* b=new int[n];
+    for (int i=1; i<n; i++)
+    {
+        b[i]=a[i];
+    }
+    int res=mergeSortPlusCounting(b,n);
+    delete [] b;
+    return res;
+}
+
+6.
+First build a BST, whose node contains a value and a count, through inserting the elements into an empty BST. Then put the sorted elements back to the array. Below is a implementation using C++ built-in BST, map.
+
+void sort_Map(double a[], int n)
+{
+    map<double, unsigned int> sortMap;
+    map<double, unsigned int>::iterator it;
+    for (int i=0;i<n;i++)
+    {
+        it=sortMap.find(a[i]);
+        if (it==sortMap.end()) sortMap[a[i]]=1;
+        else it->second++;
+    }
+    int count=0;
+    for (it=sortMap.begin();it!=sortMap.end();it++)
+    {
+        for (int i=0;i<it->second;i++)
+        {
+            a[count]=it->first;
+            count++;
+        }
+    }
+}
+
+
+
+
+
+

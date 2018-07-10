@@ -1,0 +1,129 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww13480\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs48 \cf0 Limits of Sequence\
+Def: each epsilon, N, within epsilon;\
+	Archimedean: N is natural number;\
+Proof: find N, using techniques:\
+	raise power, if not highest;\
+	set rules, then take the higher N;\
+Note:******\
+	There exists N, this is the key to turn infinite problems to finite.\
+	Otherwise we have to use contrapositive.\
+Note:******\
+	When there are things like \cf2 inf\cf0  and \cf2 sup\cf0 ,\
+	other than using epsilon, we can find something smaller/bigger that satisfies the same condition, and thus inf and sup satisfies too;\
+\
+
+\f1 \'b6\'d4\'d3\'da\'c8\'ce\'d2\'e2\'a3\'a8\'d0\'a1\'b5\'c4\'d6\'b5epsilon\'a3\'ac\'b4\'f3\'b5\'c4\'d6\'b5N\'a3\'a9\'a3\'ac\'d7\'dc\'b4\'e6\'d4\'da\'c4\'b3\'d6\'b5\'a3\'a8\'d3\'d0\'cf\'de\'b5\'c4\'a3\'a9\'a3\'ac\'c6\'e4\'ba\'f3\'bb\'f2\'c6\'e4\'c4\'da\'d6\'b5\'d7\'dc\'c2\'fa\'d7\'e3\'c4\'b3\'cc\'f5\'bc\'fe\'a3\'ac\'d5\'e2\'ca\'c7\'b6\'d4\'d3\'da\'ce\'de\'cf\'de\'b5\'c4\'d7\'aa\'bb\'af\'a1\'a3\
+\
+
+\f0 Theorem 9.1: convergency->boundedness\
+Theorem 9.2-9.6: Arithmetics. \
+Note******: Convergency of the original->convergency of the new; which means the convergency of the new is not premise;\
+Theorem 9.7: basic function examples\
+	(a) lim 1/n^p = 0 for p>0\
+	(b) lim a^n = 0 for |a|<1\
+		Proof: |a|=1/(1+b), apply binomial theorem, (1+b)^n>=1+nb>nb;\
+	(c) lim n^(1/n)=1\
+		Proof: sn=n^(1/n)-1=>n=(1+sn)^n;using binomial theorem;\
+	(d) lim a^(1/n)=1\
+\
+Def: diverge to infinity, if for each M, exists N, n>N=><or>M;\
+Theorem 9.9: lim s=inf & lim t>0 => divergency;\
+	Proof: exists m, s.t. 0<m<lim t;\
+Theorem 9.10: sn positive, lim sn=inf <=> lim 1/sn=0;\
+Note******: Deal with things like 1/inf\
+Problem 9.4: sn converges=>lim s(n+1)=lim s(n)\
+	Actually every subsequence converge to the same thing.\
+Note******: Boundedness => exists M |an|<M;\
+\
+Def: s(n)<=(or >=)s(n+1) => increasing (decreasing) or, monotone\
+	Notice: it\'92s bigger (smaller) or equal!\
+Theorem 10.2: Boundedness+monotony => convergency\
+	Proof: use sup or inf, and that between sup/inf and sup-e / inf+e, exists some sN, for n>N, \'85;\
+Note******: \cf2 Induction\cf0  can be used in a very general way:\
+	Example 2: suppose sqrt(5)<s(n+1)<s(n)<=5;\
+	Far easier than directly prove s(n)>sqrt(5)!\
+Theorem 10.4: unbounded increasing/decreasing => lim sn = +-inf;\
+	Proof: unboundedness=>exists sN>M, n>N=>sn>M;\
+Corollary 10.5: lim is always defined for convergent sequences;\
+\
+Theorem 10.7: \
+	(1) lim defined => lim sup=lim=lim inf\
+		sn<s+e=>sup<=s+e=>sup=s;\
+	(2) lim sup=lim inf => lim defined, lim sup=lim=lim inf\
+Note******: sup and inf give a range, carefully set the range, so that the condition on epsilon, which is also kind of range, will be satisfied;\
+\
+Def: Cauchyness: exists N for each e, n,m>N=>|sn-sm|<e;\
+Theorem 10.11: Cauchyness <=> convergency\
+	<=: easy, set e/2, than triangle equality\
+	=>: key: treat sm and sn differently\
+\
+Def: Subsequence: n1<n2<\'85<nk<nk+1<\'85, tk=snk\
+	Infinite, sig=nk is increasing;\
+Note******: nk>=k\
+Theorem 11.2:\
+	(1) tk=snk->t <=> infinite n s.t. |sn-t|<e for every e;\
+	(2) unboundedness->has subsequence +-inf\
+Note******: To prove the infinity in (1), suppose finite, and find the minimum, and tries to get contradiction;\
+Theorem 11.3: convergency of sequence->every subsequence converges to the same thing;\
+Theorem 11.4: every sequence has a monotonic sequence;\
+	Proof: define dominant: m>n=>sm<=sn\
+		construct something, in case of has or not\
+			if has then focus on that, if not, suppose has one and contradicts.\
+		if infinitely many, then select them\
+		if finitely many, N=the last, n1>N, exist n2>n1, definition by induction;\
+Theorem 11.5: Bolzano-Weierstrass Theorem:\
+	boundedness=>exist a convergent subsequence;\
+Theorem 11.7: exists monotonic subsequence -> lim sup/inf sn;\
+Theorem 11.8: S the set of sub sequential limits:\
+	(1) S nonempty\
+	(2) sup S = lim sup sn; inf S = lim inf sn\
+	(3) lim sn exists <=> |S|=1\
+Theorem 11.9: closeness of S\
+	tn a sequence on S, lim tn belongs to S;\
+\
+Theorem 12.1: sn converges to positive s, tn any, lim sup sntn = s lim sup tn\
+	Proof: First by >=, construct subsequence tnk, lim sup sntn = sup snktnk;\
+	Then construct 1/sn to get the reverse;\
+Theorem 12.2: sn nonzero, then:\
+	lim inf |s(n+1)/s(n)|<=lim inf |s(n)|^(1/n)<=lim sup |s(n)|^(1/n) <=lim sup |s(n+1)/s(n)|\
+Corollary 12.3: lim|s(n+1)/s(n)|=L=>lim|s(n)|^(1/n)=L\
+\
+Def: Cauchy criterion: n>=m>N, |sum n-m ak|<epsilon\
+Theorem 14.4: convergent <=> Cauchy\
+Corollary 14.7: absolute convergency => convergency\
+	Proof: comparison test, or triangle inequality\
+Tests:\
+	(1) Corollary 14.5: convergency => lim=0\
+	(2) Comparison test: sum an nonnegative,\
+		(i) |bn|<=|an| sum bn converges\
+			Triangle inequality: |sum bn| <= sum |bn| => Cauchy\
+		(ii) sum an=inf, bn>=an, bn=inf\
+	(3) Ratio test: an nonzero:\
+		(i) convergent absolutely if lim sup |an+1/an|<1\
+		(ii) diverges if lim inf >1\
+		(iii) otherwise know nothing\
+		Note******: From Root test and Theorem 12.2\
+	(4) Root test: g=lim sup |a(n)|^(1/n), sum an\
+		(i) converges abs. if g<1\
+			0<g+e<1, (g+e)^n converges, geometric, an^(1/n)<(g+e) also converges\
+		(ii) diverges if g>1\
+			has subsequence limit g, an>1 for infinite, diverge\
+		(iii) otherwise no information\
+\
+Theorem 15.3 Alternating series:\
+	a1>=a2>=a3\'85>=0 lim an=0, then converge;\
+	moreover, |nth tail|<an for all n\
+	Proof: Claim s2m<=s2n+1\
+		if m<=n, s2m<=s2n<=s2n+1\
+		if m>=n, s2n+1>=s2m+1>=s2m\
+		\
+\
+\
+\
+}
