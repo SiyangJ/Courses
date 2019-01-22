@@ -1,0 +1,22 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+%\usepackage{enumerate}
+\begin{document}
+\begin{enumerate}
+	\item 3.5.1.(a) \par
+	By closure under concatenation, $L_1=\{a^mb^n:m>n\}=\{a^n:n>0\}\circ\{a^nb^n\}$ and $L_2=\{a^mb^n:m<n\}$ are context-free languages. So by closure under union, $L_1\cup L_2=\{a^mb^n:m\ne n\}$ is context-free. 
+	\item Question 2 \par
+	Show $L=\{wcwcw:w\in\{a,b\}^*\}$ is not context-free. It's sufficient to show $L'=L\cap a^*ca^*ca^*=a^nca^nca^n$ is not context free. \par
+	Let $n\in\mathbb{N}$, let $w=a^nca^nca^n=uvxyz$, if $v$ or $y$ has $c$ in it, then $uv^2xy^2z\notin L'$. If neither $v$ nor $y$ has $c$ in it, then $uv^2xy^2z=a^mca^pca^q$, where one of $m,p,q$ equals $n$, and the other two are equal but not equal to $n$, which means $uv^2xy^2z\notin L'$.
+	\item Question 3
+	\begin{align*}
+	  & \{a^mba^nba^ p: m = n \lor n = p \lor m = p\} \\
+	= & \{a^nba^nba^*\}\cup \{a^*ba^nba^n\}\cup \{a^nba^*ba^n\}
+	\end{align*}
+	All three languages are context-free.
+\end{enumerate}
+\end{document}

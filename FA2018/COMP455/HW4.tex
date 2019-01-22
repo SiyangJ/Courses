@@ -1,0 +1,18 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+%\usepackage{enumerate}
+\begin{document}
+\begin{enumerate}
+	\item 2.3.7.(b)
+	\[ ((a\cup b)(a\cup b))^* \]
+	\item \par
+	As the hint suggests, by regularity's closure under intersection, it suffices to show $L\cap a^*bba^*=\{a^nbba^n:n\ge 0\}$ is non-regular. Take arbitrary $N>0$. Let $w=a^Nbba^N$. Take arbitrary $xyz=w$, with $|xy|\le N$, $y\neq\epsilon$. Note that $x=a^h,y=a^i,z=a^jbba^N$, where $h\ge 0,i>0,j\ge 0$ and $h+i+j=N$. Let $k=2$, then $x(y^k)z=a^ha^{2i}a^jbba^N=a^{N+i}bba^N\notin L$.\par
+	Note: we actually have a stronger conclusion in this case that $w$ can be arbitrary and $k>0$ is sufficient, since any repetition has to be done both before and after $bb$, and repetition of $y$ can only appear before or after $bb$ (or containing $bb$).
+	\item \par
+	\[ L=(a\cup b)^*,S={a^nb^n} \]
+\end{enumerate}
+\end{document}

@@ -1,0 +1,19 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+We first rigorously redefine the question to avoid potential confusion:\par
+For some $m,n\in\mathbb{N}$, find $d$, s.t. $\forall E_1=\{K_1,\Sigma,\delta_1,s_1,F_1\}$, $E_2=\{K_2,\Sigma,\delta_2,s_2,F_2\}$ with $|K_1|=m$ and $|K_2|=n$, $\exists E=\{K,\Sigma,\delta,s,F\}$ with $|K|\le d$, s.t. $L(E_1)\cap L(E_2)=L(E)$. Denote $L(E_1)=L$, and $L(E_2)=M$. \par
+
+We show that $d=mn$ satisfies such condition.\par
+
+Let $E=\{K,\Sigma,\delta,s,F\}$, where $K=K_1\times K_2$ ($\times$ denotes Cartesian product), $\delta=\delta_1\times\delta_2$ (i.e. $\delta((p,q),a)=(\delta_1(p,a),\delta_2(q,a))$), $s=(s_1,s_2)$, and $F=F_1\times F_2$. \par 
+Claim: $L(E)=L(E_1)\cap L(E_2)$:\par
+
+Let $\{(p_i,q_i)\}_{i=1}^{i=l+1}$ denotes a sequence of states of $E$ that recognizes string $a_1a_2...a_l\in L(E)$. Note that $\forall i,\delta((p_i,q_i),a_i)=(\delta_1(p_i,a_i),\delta_2(q_i,a_i))$, so $a_1a_2...a_l$ is also recoginized by the sequence $\{p_i\}_{i=0}^{i=l}$ in $E_1$ and $\{q_i\}_{i=0}^{i=l}$ in $E_2$, respectively. Therefore, $L(E)\subset L(E_1)\cap L(E_2)$. Similarly, we can show that $L(E)\supset L(E_1)\cap L(E_2)$. Therefore, $L(E)=L(E_1)\cap L(E_2)$.\par
+
+$|F|=mn$, and by Claim, $E$ recognizes $L(E_1)\cap L(E_2)$, so $d=mn$ satisfies the conditions specified by the question.
+
+\end{document}

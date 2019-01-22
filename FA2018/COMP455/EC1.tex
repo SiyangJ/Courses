@@ -1,0 +1,18 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+Claim: 
+\[\{a^4,a^9,a^{16},a^{25},...\}^* = \{a^{i^2}:i\in\mathbb{N}-\{1\}\}^*\]
+\[=\o^*\cup a^4\cup a^8\cup a^9\cup a^{12}\cup a^{13}\cup a^{16}\cup a^{17}\cup a^{18}\cup a^{20}\cup a^{21}\cup a^{22}\cup a^{24}a^*\]
+Proof:
+It suffices to prove $\forall n\ge 24,\exists p,q\ge 0,$ s.t. $n=4p+9q$. We divide into 4 cases:
+\begin{enumerate}
+	\item $n=4m$, then $p=m,q=0$
+	\item $n=4m+1$, then $p=m-2,q=1$
+	\item $n=4m+2$, then $p=m-4,q=2$
+	\item $n=4m+3$, then $p=m-6,q=3$. Note that $m\ge 6$, so $p\ge 0$.
+\end{enumerate}
+\end{document}

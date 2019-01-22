@@ -1,0 +1,18 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+\newcommand{\st}{\text{ s.t. }}
+\begin{document}
+Let $N:=(K,\Sigma,\Delta,s,F)$ be the finite automaton that recognizes $L$, i.e. $L(N)=L$. Let $E:=\{q\in K\:|\:\exists f\in F\text{, s.t. }\exists\text{ path from }q\text{ to }f\}$, $F':=E\cup F$, $N':=(K,\Sigma,\Delta,s,F')$.  \par
+Claim: $N'$ recognizes $M$, i.e. $L(N')=M$.\par
+Proof:\newline
+We first show $L(N')\supseteq M$. Let $m\in M$ and $mm'=l\in L$. Since $N$ recognizes $L$, $\exists p\in K,f\in F\st (s,mm')\vdash^*_N(p,m')\vdash^*_N(f,\epsilon)$. By definition of $F'$, $p\in F'$. Further, $(s,m)\vdash^*_N(p,\epsilon)$. Note that $N$ and $N'$ only differ by the final states, so $(s,m)\vdash^*_{N'}(p,\epsilon)$, which means $m\in L(N')$.\newline
+We then show $L(N')\subseteq M$. Let $m\in L(N')$ and $(s,m)\vdash^*_{N'}(p,\epsilon),p\in F'$. By definition of $F'$, $\exists m',f\in F\st (p,m')\vdash^*_{N'}(f,\epsilon)$. Therefore, $(s,mm')\vdash^*_{N'}(f,\epsilon)$, and since $N$ and $N'$ only differ by the final states, $(s,mm')\vdash^*_N(f,\epsilon)$, which means $mm'\in L(N)=L$, which means $m\in M$.
+
+By Claim, $M$ is regular.
+
+\end{document}
